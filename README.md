@@ -8,4 +8,8 @@ Apresentando uma interface gráfica simples e fácil de operar, o MUAN permite a
 A base educacional do projeto permite que usuários iniciantes e profissionais usufruam das funcionalidades do MUAN com muita facilidade.
 
 # IMPORTANTE
-O código aqui presente é apenas uma cópia da última versão do MUAN lançada em 2012. Desde então não houve alterações no software, que pertence ao Lab. Visgraf/IMPA e ao Festival Anima Mundi. Como o site oficial do programa (muan.org.br) está fora do ar, criei o repositório para facilitar o acesso a quem ainda usa ou quer usar o MUAN.
+O código aqui presente é apenas uma cópia da última versão do MUAN lançada em 2012. Desde então não houve alterações no software, que pertence ao Lab. Visgraf/IMPA e ao Festival Anima Mundi. Como o site oficial do programa ([muan.org.br](http://muan.org.br)) está fora do ar, criei o repositório para facilitar o acesso a quem ainda usa ou quer usar o MUAN.
+
+Os arquivos para instalação se encontram na aba "releases".
+
+Para informações detalhadas sobre a arquitetura do programa e instruções de compilação há uma documentação detalhada disponível neste endereço: [https://www.visgraf.impa.br/muan2/doxygen_output/index.html](https://www.visgraf.impa.br/muan2/doxygen_output/index.html).
