@@ -1,0 +1,10 @@
+NOTA:
+=====
+
+O código-fonte deste projeto foi compilado e testado nos sistemas operacionais Ubuntu Linux 12.04(32 e 64 bits), MacOSX 10.6 e Microsoft Windows 7.
+Sendo assim, não há nenhuma garantia de que este código funcionará em sistemas diferente destes.
+
+DEPENDÊNCIAS:
+=============
+Para compilar o projeto na distro Ubuntu 12.04 é necessário instalar os seguintes pacotes:
+sudo apt-get install libsamplerate0-dev libdv4-dev libavc1394-dev libiec61883-dev libdc1394-22-dev libraw1394-dev libv4l-dev libmpeg2-4-dev libsndfile1-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libjpeg-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev

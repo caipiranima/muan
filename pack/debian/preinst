@@ -1,0 +1,26 @@
+#! /bin/sh
+set -e
+
+case "$1" in
+    install)
+        MUAN_SHARE_DIR="/usr/share/muan"
+        #echo "PREINST INSTALANDO....."
+        if [ ! -d $MUAN_SHARE_DIR ]
+        then
+                /bin/mkdir $MUAN_SHARE_DIR
+        fi
+        ;;
+
+    upgrade|abort-upgrade)
+        #echo "PREINST UPGRADING...."
+        ;;
+
+    *)
+        echo "preinst called with unknown argument \`$1'" >&2
+        exit 0
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

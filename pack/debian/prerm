@@ -1,0 +1,38 @@
+#! /bin/sh
+
+set -e
+
+case "$1" in
+    remove)
+        MUAN_SHARE_DIR="/usr/share/muan"
+        if [ -d $MUAN_SHARE_DIR ]
+        then
+                #/bin/rm -rf $MUAN_SHARE_DIR
+                echo ""
+        fi
+
+        MUAN_ICON="/usr/share/applications/muan.desktop"
+        for home_dir in $(ls -d /home/*)
+        do
+            user=$(echo $home_dir | cut -d/ -f3) 
+            # looking for valid users
+            if [ "$(getent passwd | cut -d: -f1 | grep $user)" = "$user" ] 
+            then
+                su -l $user -c "xdg-desktop-icon uninstall $MUAN_ICON"
+            fi
+        done        
+        xdg-desktop-menu uninstall --mode system /usr/share/desktop-directories/muan.directory $MUAN_ICON
+        ;;
+
+    upgrade|abort-upgrade)
+        ;;
+
+    *)
+        echo "prerm called with unknown argument \`$1'" >&2
+        exit 0
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

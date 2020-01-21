@@ -1,0 +1,15 @@
+/** \mainpage  MUAN Documentation
+
+MUAN is a Stop Motion Animation System for Education. The MUAN system allows animation movie production offering an integrated kit of hardware and software. It consists of a computer with Linux, Mac OS or Windows, a digital video camera and support over necessary acessories for interconnection. The software was conceived by ANIMA MUNDI (International Animation Festival of Brazil) and developed by the team of VISGRAF Laboratory, with the sponsorship of IBM. It consists of programs to create, edit, manipulate and visualize animations.
+
+\li \ref intro
+\li \ref overview
+\li \ref architecture
+\li \ref software
+\li \ref appl
+\li \ref code
+\li \ref staff
+\li \ref lic
+\li \ref ack
+
+**/

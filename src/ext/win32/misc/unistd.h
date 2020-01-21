@@ -1,0 +1,1 @@
+#define fork(A) 1

@@ -1,0 +1,658 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+<HEAD>
+  <META name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <META http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <TITLE>MUAN_AE (Português) - Manual do Usuário</TITLE>
+</HEAD>
+
+<BODY alink="#33CCCC" link="#008080" vlink="#008080">
+  <TABLE id="AutoNumber1" border="2" bordercolor="#FFFFFF" cellspacing="1" height="116" width="100%">
+    <TBODY>
+      <TR>
+        <TD bgcolor="#000000" height="48" width="100%">
+          <P align="center"><FONT face="Verdana"><IMG src="images_pt/logo.jpg" height="158" width="359"></FONT></P>
+        </TD>
+      </TR>
+
+      <TR>
+        <TD bgcolor="#000000" height="58">
+          <P align="center"><FONT color="#FFFFFF" face="Verdana" size="6">Manual do Usuário</FONT></P>
+        </TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+
+  <P align="justify"><FONT face="Verdana" size="2"><B>&nbsp;</B></FONT></P>
+
+  <P align="justify"><FONT face="Verdana" size="2"><B>O <FONT color="#000080">MUAN</FONT> é uma ferramenta de apoio à construção de animações do tipo Quadro-a-Quadro. Através de uma câmera, ele recebe as imagens digitais com as quais a animação será construída. O princípio básico da criação de uma animação com o MUAN inicia-se com a captura de uma imagem pelo usuário. A imagem a ser capturada é mostrada no painel de imagens. Após a captura de um certo número de imagens, o usuário poderá reproduzir sua animação bem como editá-la. Por fim, a animação poderá ser salva no formato AVI e ainda carregada quando o usuário desejar.</B></FONT></P>
+
+  <P align="center"><FONT face="Verdana" size="2"><B>&nbsp;</B></FONT></P>
+
+  <P align="center"><FONT face="Verdana" size="2"><B><A name="TelaMuanAE">A imagem abaixo mostra a tela principal do MUAN_AE. Clique sobre um elemento para ver a sua funcionalidade.</A></B></FONT></P>
+
+  <P align="center"><FONT face="Verdana" size="2"><B><BR>
+  <MAP name="FPMap2">
+    <AREA href="#Botão Novo" shape="rect" coords="8, 35, 75, 45">
+    <AREA href="#Botão Carregar" shape="rect" coords="8, 65, 76, 85">
+    <AREA href="#Botão Inserir" shape="rect" coords="8, 95, 77, 105">
+    <AREA href="#Botão Salvar" shape="rect" coords="8, 130, 75, 145">
+    <AREA href="#Botão Salvar Como" shape="rect" coords="8, 155, 75, 165">
+    <AREA href="#Botão Exportar" shape="rect" coords="8, 190, 76, 200">
+    <AREA href="#Botão Importar Imagens" shape="rect" coords="8, 210, 74, 220">
+    <AREA href="#Seleção Memória/Câmera" shape="rect" coords="8, 250, 77, 260">
+    <AREA href="#Botão Fullscr" shape="rect" coords="8, 280, 65, 290">
+    <AREA href="#Botão Flipar" shape="rect" coords="8, 340, 70, 350">
+    <AREA href="#Botão Transparência" shape="rect" coords="9, 360, 70, 370">
+    <AREA href="#Slider Transparência" shape="rect" coords="9, 385, 70, 395">
+    <AREA href="#Botão Sair" shape="rect" coords="530, 45, 600, 60">
+    <AREA href="#Botão Sobre" shape="rect" coords="530, 80, 600, 90">
+    <AREA href="#Botão Manual" shape="rect" coords="530, 100, 600, 110">
+    <AREA href="#Botão Preferências" shape="rect" coords="530, 140, 600, 150">
+    <AREA href="#Botão Bug Report" shape="rect" coords="530, 165, 600, 180">
+    <AREA href="#Botão Camera Filter" shape="rect" coords="530, 200, 600, 215">
+    <AREA href="#Camera Filter Select" shape="rect" coords="530, 220, 600, 235">
+    <AREA href="#Botão Process Frames" shape="rect" coords="530, 260, 600, 275">
+    <AREA href="#Process Frames Select" shape="rect" coords="530, 280, 600, 295">
+    <AREA href="Campo de Texto Início" shape="rect" coords="110, 320, 140, 340">
+    <AREA href="Campo de Texto Fim" shape="rect" coords="170, 320, 190, 340">
+    <AREA href="#Botão Trecho" shape="rect" coords="100, 350, 130, 365">
+    <AREA href="#Botão Loop" shape="rect" coords="160, 350, 200, 365">
+    <AREA href="#Botão Copy" shape="rect" coords="100, 370, 130, 380">
+    <AREA href="#Botão Remover" shape="rect" coords="160, 370, 200, 380">
+    <AREA href="#Botão Paste" shape="rect" coords="100, 390, 130, 400">
+    <AREA href="#Botão Inverted Paste" shape="rect" coords="160, 390, 200, 400">
+    <AREA href="#Botão Primeiro Frame" shape="rect" coords="210, 320, 230, 340">
+    <AREA href="#Botão Anterior" shape="rect" coords="235, 320, 255, 340">
+    <AREA href="#Botão Pause" shape="rect" coords="265, 320, 285, 340">
+    <AREA href="#Botão Play" shape="rect" coords="290, 320, 310, 340">
+    <AREA href="#Botão Próximo" shape="rect" coords="320, 320, 340, 340">
+    <AREA href="#Botão Último" shape="rect" coords="345, 320, 365, 340">
+    <AREA href="#Botão Capturar" shape="rect" coords="220, 360, 350, 400">
+    <AREA href="Campo de Texto Ir Para" shape="rect" coords="420, 320, 440, 340">
+    <AREA href="Campo de Texto Duração do Frame" shape="rect" coords="470, 320, 490, 340">
+    <AREA href="#Saída de Texto Captura Corrente" shape="rect" coords="410, 360, 450, 400">
+    <AREA href="#Saída de Texto Frame Corrente" shape="rect" coords="480, 360, 500, 400">
+    <AREA href="#Saída de Texto Duração Frame Corrente" shape="rect" coords="550, 375, 590, 400">
+    <AREA href="#Saída de Texto Captura Total" shape="rect" coords="550, 320, 600, 340">
+    <AREA href="#Saída de Texto Frame Total" shape="rect" coords="550, 350, 600, 360">
+    <AREA href="#Saída de Texto Arquivo" shape="rect" coords="400, 410, 500, 550">
+  </MAP> <IMG border="0" src="images_pt/muan_ae_pt.jpg" width="606" height="421" usemap="#FPMap2"><BR>
+  <BR></B></FONT></P>
+  <HR color="#000000" noshade="noshade">
+
+  <P align="left"><FONT face="Verdana" size="2"><B><FONT color="#000080" face="Verdana" size="3"><B>Principais comandos</B></FONT></B></FONT></P>
+
+  <HR color="#000000" noshade="noshade">
+
+  <P align="left"><FONT face="Verdana" size="2"><B><FONT color="#000080"><A name="Painel de imagens">Painel de imagens</A></FONT></B></FONT></P>
+
+  <P align="left"><FONT face="Verdana" size="2"><B>Painel central do MUAN onde são mostradas as imagens. Funciona em dois modos:</B></FONT></P>
+
+  <OL>
+    <LI><FONT face="Verdana" size="2"><B><FONT color="#008080">Memória</FONT> - Exibe as imagens da memória (animação construída).</B></FONT></LI>
+
+    <LI><FONT face="Verdana" size="2"><B><FONT color="#008080">Câmera</FONT> - Exibe as imagens que vêm da câmera, em tempo real. Neste modo, o texto <FONT color="#FF0000">CÂMERA</FONT> será visível no canto esquerdo superior do painel.</B></FONT></LI>
+  </OL><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P align="left"><FONT face="Verdana" size="2"><B><FONT color="#000080"><A name="Seleção Memória/Câmera">Seleção Memória/Câmera</A></FONT></B></FONT></P>
+
+  <P align="left"><FONT face="Verdana" size="2"><B>Determina se as imagens mostradas no painel de imagens são oriundas da câmera ou da própria animação (memória). Quando no modo "Memória", indica que as imagens mostradas no painel de imagens são oriundas da animação. No modo "Câmera", indica que as imagens mostradas no painel de imagens são provindas da câmera.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: CTRL+/</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante</FONT>: Se a câmera não estiver conectada ao computador ou estiver desligada, o aplicativo exibe uma mensagem e entra (ou continua) em modo "Memória".<BR>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="images_pt/msg_cam_desligada.jpg" border="0" width="344" height="79"></B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P align="left"><FONT face="Verdana" size="2"><B><A name="Botão Capturar"><FONT color="#000080">Botão Capturar</FONT></A></B></FONT></P>
+
+  <P align="left"><FONT face="Verdana" size="2"><B>Captura a imagem corrente recebida pela câmera, inserindo-a na animação na posição seguinte a atual.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho:&nbsp;&nbsp;\</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P align="left"><FONT face="Verdana" size="2"><B><A name="Campo de Texto Duração do Frame"><FONT color="#000080">Campo de Texto Duração do Frame</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>No modo Câmera, define a a duração do frame a ser capturado. Como exemplo, uma duração de 2 frames indica que o próximo frame capturado durará o tempo de 2 frames quando da execução da animação.<BR>
+  <BR>
+  No modo Memória, define a duração do frame corrente (aquele que esta sendo exibido no painel de imagens). Para tal, basta digitar a duração desejada e teclar ENTER.</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><FONT color="#000080"><A name="Campo de Texto Ir Para">Campo de Texto Ir Para</A></FONT></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Posiciona a animação na posição desejada e exibe no painel de imagens. O usuário deve inserir o número da imagem capturada requisitada e pressionar ENTER.</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante:</FONT> Neste caso, se o programa estiver em modo Câmera, automaticamente entrará em modo <FONT color="#008080">Memória</FONT>.</B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Saída de Texto Captura Corrente"><FONT color="#000080">Saída de Texto Captura Atual</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Indica o número (posição) da imagem (captura) corrente.</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><FONT color="#000080"><A name="Saída de Texto Duração Frame Corrente">Saída de Texto Duração Frame Atual</A></FONT></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Indica qual a duração do frame corrente.</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Saída de Texto Frame Corrente"><FONT color="#000080">Saída de Texto Frame Atual</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Indica o número do frame corrente.<BR>
+  Este número é calculado levando-se em conta a duração das capturas anteriores.</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Dica:</FONT> Caso o painel principal esteja no modo "Memória", o frame corrente será exibido no painel de imagens.</B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Saída de Texto Captura Total"><FONT color="#000080">Saída de Texto Captura Total</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Indica o número total de imagens capturadas para a animação.</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Saída de Texto Frame Total"><FONT color="#000080">Saída de Texto Frame Total</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Indica o número total de frames da animação.<BR>
+  Este número é calculado levando-se em conta a duração de todas as capturas.</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Saída de Texto Arquivo"><FONT color="#000080">Saída de Texto Arquivo</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Indica o nome e o caminho do arquivo atual (onde está salvo).</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Dica:</FONT> Quando o nome do arquivo está em vermelho significa que o arquivo não está com as últimas atualizações salvas.</B></FONT></P>
+  </BLOCKQUOTE>
+
+  <P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT></P>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Primeiro Frame"><FONT color="#000080" face="Verdana" size="2">Botão Primeiro Frame</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Posiciona o frame corrente no primeiro frame da animação.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: HOME</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante</FONT>: Esta operação coloca a aplicação em modo "Memória", caso não esteja.</B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><FONT color="#000080"><A name="Botão Anterior">Botão Frame Anterior</A></FONT></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Volta a posição do frame corrente de 1 posição.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: &nbsp;&nbsp;&lt;</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante</FONT>: Esta operação coloca a aplicação em modo "Memória", caso não esteja.</B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><FONT color="#000080"><A name="Botão Pause">Botão Parar Animação</A></FONT></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Congela (pára) a execução da animação.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: PAUSE</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante</FONT>: Para que este fato seja observado, a seleção <FONT color="#008080">Memória</FONT> deve estar ativa em Seleção "Memória/Câmera" e a animação tem que estar sendo tocada. Caso contrário, o clique neste botão não terá sentido, então nada acontece.</B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Play"><FONT color="#000080">Botão Tocar Animação</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Executa a animação.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: CTRL+ENTER</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante</FONT>: Esta operação coloca a aplicação em modo "Memória", caso não esteja.</B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><FONT color="#000080" face="Verdana" size="2"><A name="Botão Próximo">Botão Próximo Frame</A></FONT></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Incrementa a posição do frame corrente de 1 posição.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: &nbsp;&nbsp;&gt;</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante</FONT>: Esta operação coloca a aplicação em modo "Memória", caso não esteja.</B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><FONT color="#000080" face="Verdana" size="2"><A name="Botão Último">Botão Último Frame</A></FONT></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Posiciona o frame corrente no último frame da animação.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: END</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante</FONT>: Esta operação coloca a aplicação em modo "Memória", caso não esteja.</B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Trecho"><FONT color="#000080" face="Verdana" size="2">Botão Trecho</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Habilita a opção de execução de apenas um trecho da animação. O início e o fim do trecho devem ser especificados no campo <A href="#Campo+de+Texto+In%EDcio">Início</A> e <A href="Campo de Texto Fim">Fim</A>, respectivamente.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: CTRL+R</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><FONT color="#000080" face="Verdana" size="2"><A name="Campo de Texto Início">Campo de Texto Início</A></FONT></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Determina a posição de início de execução de uma animação. Caso esteja em branco, a animação será executada a partir do primeiro frame.</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Dica</FONT>: No modo "Memória", utilize o <FONT color="#800000">Botão Início</FONT> para definir o início do trecho como sendo o frame atual.</B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Campo de Texto Fim"><FONT color="#000080" face="Verdana" size="2">Campo de Texto Fim</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Determina a posição final da execução de uma animação. Caso esteja em branco, a animação será executada até o último frame.</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Dica</FONT>: No modo "Memória", utilize o <FONT color="#800000">Botão Fim</FONT> para definir o fim do trecho como sendo o frame atual.</B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Loop"><FONT color="#000080" face="Verdana" size="2">Botão Loop</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Liga/Desliga a opção de execução contínua da animação. Quando ligado, toca a animação sempre recomecando do início, quando chega ao final.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: CTRL+L</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P align="left"><FONT face="Verdana" size="2"><B><FONT color="#000080"><A name="Botão Copy">Botão Copiar</A></FONT></B></FONT></P>
+
+  <P align="left"><FONT face="Verdana" size="2"><B>Copia uma imagem ou um trecho quando definido para a memória.</B></FONT> <FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT></P>
+  <HR color="#000000" noshade="noshade">
+
+  <P align="left"><FONT face="Verdana" size="2"><B><FONT color="#000080"><A name="Botão Paste">Botão Colar</A></FONT></B></FONT></P>
+
+  <P align="left"><FONT face="Verdana" size="2"><B>Cola uma imagem ou um trecho que está na memória.</B></FONT> <FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT></P>
+  <HR color="#000000" noshade="noshade">
+
+  <P align="left"><FONT face="Verdana" size="2"><B><FONT color="#000080"><A name="Botão Inverted Paste">Botão Colar Invertido</A></FONT></B></FONT></P>
+
+  <P align="left"><FONT face="Verdana" size="2"><B>Cola um trecho de tŕas para frente.</B></FONT> <FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT></P>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Flipar"><FONT color="#000080" face="Verdana" size="2">Botão Flipar</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Liga/Desliga a operacao de "Flip", a qual alterna a exibicao da última imagem da animação e da imagem que esta sendo recebida pela câmera. É possível controlar a velocidade do flip através do <I>slider</I>.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: CTRL+F</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante</FONT>: Caso o programa esteja executando uma animação, ela automaticamente pára quando o flip é ligado.</B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Transparência"><FONT color="#000080" face="Verdana" size="2">Botão Transparência</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Liga/Desliga a operação de Transparência, a qual aplica uma transparência e sobrepõem a última imagem da animação com a imagem que está sendo recebida pela câmera. É possível controlar a porcentagem da transparência através do <I>slider</I>.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante</FONT>: Caso o programa esteja executando uma animação, ela automaticamente para quando a transparência é ligada.</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P align="left"><FONT face="Verdana" size="2"><B><FONT color="#000080"><A name="Slider Transparência">Controle da Transparência</A></FONT></B></FONT></P>
+
+  <P align="left"><FONT face="Verdana" size="2"><B>Controla a porcentagem da transparência.</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><FONT color="#000080" face="Verdana" size="2"><B><A name="Botão Fullscr">Botão Tela Cheia</A></B></FONT></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B><FONT face="Verdana" size="2"><B>Coloca o aplicativo no modo tela cheia, ou seja, toda a tela do monitor fica preenchida apenas com o <A href="#Painel de imagens">painel de imagens</A>. Para voltar ao modo normal da tela, utilize a tecla ESC.<BR>
+  <BR>
+  Tecla de Atalho: ALT+ENTER<BR></B></FONT></B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Remover"><FONT color="#000080" face="Verdana" size="2"><B>Botão Remover</B></FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Quando em modo "Memória", remove o frame corrente, se confirmada a operação. Uma animação sempre tem que ter pelo menos um frame. Assim, ao remover o último frame, automaticamente o <A href="#Pref - Frame de Abertura">Frame de Abertura</A> é inserido na animação e passa a ser o frame corrente.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: DELETE</B></FONT></P>
+
+  <TABLE>
+    <TBODY>
+      <TR>
+        <TD><IMG src="images_pt/msg_confirm_remover.jpg" border="0" width="287" height="79"></TD>
+
+        <TD>&nbsp;</TD>
+
+        <TD>
+          <P><B><FONT face="Verdana" size="2"><FONT color="#800000">Importante</FONT>: Na tela de confirmação, independente do botão que estiver em foco, a tecla ENTER confirma a operação e a tecla ESC, cancela a operação. O botão em foco pode ser acionado, através do teclado, utilizando-se a barra de espaço.</FONT></B></P>
+        </TD>
+      </TR>
+    </TBODY>
+  </TABLE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Salvar"><FONT color="#000080">Botão Salvar</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Salva a animação corrente no formato AVI.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: CTRL+S</B></FONT></P>
+
+  <TABLE>
+    <TBODY>
+      <TR>
+        <TD><IMG src="images_pt/dlg_salvar.jpg" border="0" width="350" height="285"></TD>
+
+        <TD>&nbsp;</TD>
+
+        <TD>
+          <P><B><FONT face="Verdana" size="2"><FONT color="#800000">Importante</FONT>: O MUAN guarda a informação de duração dos frames no arquivo AVI salvo. Assim, esta informação pode ser utilizada na hora de carregar o arquivo. Para maiores detalhes, consulte a seção "<A href="#Pref - Modo de Carregar">Preferências - Modo de Carregar</A>".</FONT></B></P>
+        </TD>
+      </TR>
+    </TBODY>
+  </TABLE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Salvar Como"><FONT color="#000080">Botão Salvar Como</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Salva a animação corrente com um novo nome no formato AVI.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: SHIFT+CTRL+S</B></FONT></P>
+
+  <TABLE>
+    <TBODY>
+      <TR>
+        <TD><IMG src="images_pt/dlg_salvar.jpg" border="0" width="350" height="285"></TD>
+
+        <TD>&nbsp;</TD>
+
+        <TD>
+          <P><B><FONT face="Verdana" size="2"><FONT color="#800000">Importante</FONT>: O MUAN guarda a informação de duração dos frames no arquivo AVI salvo. Assim, esta informação pode ser utilizada na hora de carregar o arquivo. Para maiores detalhes, consulte a seção "<A href="#Pref - Modo de Carregar">Preferências - Modo de Carregar</A>".</FONT></B></P>
+        </TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+
+  <P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT></P>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Bug Report"><FONT color="#000080">Botão Reportar Erro</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Abre no browser um formulário para que o usuário possa relatar problemas com o MUAN.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Shortcut: CTRL+S</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Camera Filter"><FONT color="#000080">Botão Filtro Camera</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Aplica filtros na imagem capturada pela camera em tempo real.</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Camera Filter Select"><FONT color="#000080">Selecionar Filtro da Camera</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Permite selecionar o filtro a ser aplicado na imagem capturada pela camera em tempo real.</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Process Frames"><FONT color="#000080">Botão Processa <I>Frames</I></FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Aplica filtros nos frames que estão na memória.</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Process Frames Select"><FONT color="#000080">Selecionar Filtro</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Permite selecionar o filtro a ser aplicado nos frames que estão na memória</B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Novo"><FONT color="#000080" face="Verdana" size="2">Botão Novo</FONT></A></B></FONT></P>
+
+  <P><B><FONT face="Verdana" size="2">Cria uma nova animação em branco,</FONT></B> <FONT face="Verdana" size="2"><B>fechando qualquer animação em uso, caso esteja sendo usada.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: CTRL+N</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Dica</FONT>: Antes de fechar a animação atual, o programa solicita a operação Salvar caso o arquivo esteja desatualizado.</B></FONT></P>
+  </BLOCKQUOTE>
+
+  <P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT></P>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><FONT color="#000080" face="Verdana" size="2"><A name="Botão Carregar">Botão Carregar</A></FONT></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Carrega uma animação previamente salva ou imagem do tipo RAS.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: CTRL+G</B></FONT></P>
+
+  <TABLE>
+    <TBODY>
+      <TR>
+        <TD><IMG src="images_pt/dlg_carregar_avi.jpg" border="0" width="350" height="285"></TD>
+      </TR>
+    </TBODY>
+  </TABLE><FONT face="Verdana" size="2"><B><BR></B></FONT>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante</FONT>: Fecha o arquivo atual para abrir o novo solicitado.</B></FONT></P>
+  </BLOCKQUOTE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Inserir"><FONT color="#000080" face="Verdana" size="2">Botão Inserir</FONT></A></B></FONT></P>
+
+  <P><B><FONT face="Verdana" size="2">Insere</FONT></B> <FONT face="Verdana" size="2"><B>um arquivo previamente salvo (animação ou imagem do tipo RAS) na animação atual.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: CTRL+I</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante</FONT>: A animação ou imagem será inserida na posição do frame corrente.</B></FONT></P>
+  </BLOCKQUOTE>
+
+  <P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT></P>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Exportar"><FONT color="#000080" face="Verdana" size="2">Botão Exportar</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Exporta a animação corrente para um novo formato. Extensões disponíveis:</B></FONT></P>
+
+  <UL>
+    <LI><FONT face="Verdana" size="2"><B>mpg: salva a animação no formato mpeg1.</B></FONT></LI>
+
+    <LI><B><FONT face="Verdana" size="2">avi: salva a animação no formato avi dv1.</FONT></B></LI>
+
+    <LI><B><FONT face="Verdana" size="2">jpg: salva todos os frames da animação em arquivos jpeg no diretório selecionado. Neste caso, os nomes dos arquivos serão gerados com o nome informado como prefixo seguido de uma numeração sequencial.</FONT></B></LI>
+  </UL>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: CTRL+E</B></FONT></P>
+
+  <BLOCKQUOTE>
+    <P><FONT face="Verdana" size="2"><B><FONT color="#800000">Importante</FONT>: Na tela de exportação, dê o nome do arquivo com a extensão (formato) desejado. Por exemplo: teste.mpg para que o arquivo seja salvo no formato mpeg1.</B></FONT></P>
+  </BLOCKQUOTE>
+
+  <P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT></P>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Importar Imagens"><FONT color="#000080" face="Verdana" size="2">Botão Importar Imagens</FONT></A></B></FONT></P>
+
+  <P><B><FONT face="Verdana" size="2">Insere</FONT></B> <FONT face="Verdana" size="2"><B>na animação atual todos os arquivos jpeg de um diretório seguindo a ordem alfabética dos nomes dos arquivos.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: CTRL+M</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT></P>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Sobre"><FONT color="#000080" face="Verdana" size="2">Botão Sobre</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Exibe a tela Sobre contendo informações sobre o desenvolvimento do MUAN.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <IMG src="images_pt/tela_sobre.jpg" border="0" height="412" width="228"></B></FONT></P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><FONT color="#000080" face="Verdana" size="2"><A name="Botão Manual">Botão Manual</A></FONT></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Exibe este manual do usuário.</B></FONT></P><B><FONT face="Verdana" size="2">Tecla de Atalho: F1</FONT></B>
+
+  <P><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT></P>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Preferências"><FONT color="#000080" face="Verdana" size="2">Botão Preferências</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Exibe a tela de preferências onde são configurados os parâmetros do sistema.</B></FONT></P>
+
+  <TABLE>
+    <TBODY>
+      <TR>
+        <TD><IMG src="images_pt/tela_preferencias.jpg" border="0" height="250" width="364"></TD>
+
+        <TD>&nbsp;</TD>
+
+        <TD><IMG src="images_pt/tela_preferencias_autosaveativo.jpg" border="0" height="250" width="364"></TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+
+  <UL>
+    <LI><FONT face="Verdana" size="2"><B><A name="Pref - Modo de Carregar"><FONT color="#800000">Modo de Carregar</FONT></A><BR>
+    Existem 3 modos de carregar um arquivo:</B></FONT></LI>
+
+    <LI style="list-style: none; display: inline">
+      <OL>
+        <LI><FONT face="Verdana" size="2"><B>Usando numeração do MUAN</B></FONT></LI>
+
+        <LI><FONT face="Verdana" size="2"><B>Comparando Frames</B></FONT></LI>
+
+        <LI><FONT face="Verdana" size="2"><B>Todos os Frames</B></FONT></LI>
+      </OL><FONT face="Verdana" size="2"><B><BR></B></FONT>
+    </LI>
+
+    <LI><FONT face="Verdana" size="2"><B><A name="Pref - Tamanho da Imagem"><FONT color="#800000">Tamanho da Imagem</FONT></A><BR>
+    O Tamanho da Imagem é definido pela câmera selecionada ou pode ser alterado pelo usuário para um tamanho diferente.<BR>
+    <BR>
+    Note: A alteração do tamanho da imagem deve ser usado com cautela, uma vez que alterado o tamanho da imagem e salvando as preferências, o Muan irá iniciar sempre com este tamanho definido pelo usuário e não mais com o tamanho definido pela câmera. Para voltar a utilizar o tamanho definido pela câmera, o usuário deverá desmarcar a opção Override e clicar novamente no botão Salvar.<BR>
+    <BR>
+    Note: O tamanho da imagem só é alterado quando o usuário clica no botão Salvar. Ao clicar no botão Salvar o Muan é fechado e o usário deverá reiniciar a aplicação.</B></FONT></LI>
+
+    <LI style="list-style: none"><FONT face="Verdana" size="2"><B><BR></B></FONT></LI>
+
+    <LI><FONT face="Verdana" size="2"><B><A name="Pref - Frame de Abertura"><FONT color="#800000">Frame de Abertura</FONT></A><BR>
+    Imagem utilizada pelo MUAN normalmente como primeiro frame da animação, uma vez que toda animação deve conter pelo menor um frame. Funciona como a cartela da animação.</B></FONT></LI>
+
+    <LI style="list-style: none"><FONT face="Verdana" size="2"><B><BR></B></FONT></LI>
+
+    <LI><FONT face="Verdana" size="2"><B><A name="Pref - Duracao Padrao"><FONT color="#800000">Duração Padrão</FONT></A><BR>
+    Define a duração padrão do frame a ser capturado, ou seja, a duração que será usada para a captura quando o usuário nao definir nenhum valor no Campo de Texto <A href="#Campo+de+Texto+Dura%E7%E3o+do+Frame">Duração</A>.</B></FONT></LI>
+
+    <LI style="list-style: none"><FONT face="Verdana" size="2"><B><BR></B></FONT></LI>
+
+    <LI><FONT face="Verdana" size="2"><B><A name="Pref - Salvar Automatico"><FONT color="#800000">Salvar Automatico</FONT></A><BR>
+    Liga/Desliga a opção de que uma animação seja salva automaticamente pelo sistema, após um tempo estipulado.</B></FONT></LI>
+
+    <LI style="list-style: none; display: inline">
+      <UL>
+        <LI><FONT face="Verdana" size="2"><B><A name="Pref - Salvar Automatico Arquivo"><FONT color="#800000">Arquivo</FONT></A>: Define o nome do arquivo onde a animação será salva automaticamente.</B></FONT></LI>
+
+        <LI><FONT face="Verdana" size="2"><B><A name="Pref - Salvar Automatico Tempo"><FONT color="#800000">Tempo</FONT></A>: Define o tempo (em segundos) que o aplicativo aguarda para salvar a animação automaticamente.</B></FONT></LI>
+      </UL>
+    </LI>
+  </UL>
+
+  <UL>
+    <LI><FONT face="Verdana" size="2"><B><A name="Pref - Tipo de Conexão"><FONT color="#800000">Tipo de Conexão</FONT></A><BR>
+    A seleção da câmera depende de qual plataforma está sendo usada. No Mac Os e no Windows só existe um tipo de câmera. Já no Linux, o usuário pode escolher entre DV, DC e V4L (padrão).<BR>
+    <BR>
+    Observação: O tipo de câmera só é alterado quando o usuário clica no botão Salvar. Ao clicar no botão Salvar o Muan é fechado e o usário deverá reiniciar novamente a aplicação.</B></FONT></LI>
+  </UL><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P><FONT face="Verdana" size="2"><B><A name="Botão Sair"><FONT color="#000080" face="Verdana" size="2">Botão Sair</FONT></A></B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Sai do sistema.<BR>
+  <BR>
+  Se a animação corrente não estiver salva, permite que esta operação seja executada neste momento.</B></FONT></P>
+
+  <P><FONT face="Verdana" size="2"><B>Tecla de Atalho: ESC</B></FONT></P>
+
+  <TABLE>
+    <TBODY>
+      <TR>
+        <TD><IMG src="images_pt/msg_confirm_fechar_salvar.jpg" border="0" width="301" height="88"></TD>
+
+        <TD>&nbsp;</TD>
+
+        <TD>
+          <P><B><FONT face="Verdana" size="2"><FONT color="#800000">Não</FONT>: Sai do aplicativo sem salvar.<BR>
+          <FONT color="#800000">Sim (tecla ENTER)</FONT>: Abre tela para informar o nome do arquivo.<BR>
+          <FONT color="#800000">Cancelar (tecla ESC)</FONT>: Cancela a operação Sair.</FONT></B></P>
+        </TD>
+      </TR>
+    </TBODY>
+  </TABLE><FONT face="Verdana" size="2"><B><BR>
+  <A href="#TelaMuanAE"><IMG src="images_pt/seta_topo.jpg" border="0" height="16" width="18"></A></B></FONT>
+  <HR color="#000000" noshade="noshade">
+
+  <P align="justify">&nbsp;</P>
+
+  <TABLE align="center" width="480">
+    <TBODY>
+      <TR>
+        <TD align="center" width="160"><B>Coordenação</B><BR>
+        <A href="http://www.animamundi.com.br" target="_blank"><IMG src="images_pt/logo_parceria_animamundi.jpg" border="0" width="112" height="71"></A></TD>
+
+        <TD align="center" width="160"><B>Desenvolvimento</B><BR>
+        <A href="http://www.visgraf.impa.br" target="_blank"><IMG src="images_pt/logo_parceria_visgraf.jpg" border="0" width="114" height="71"></A></TD>
+
+        <TD align="center" width="160"><B>Parceria Tecnológica</B><BR>
+        <A href="http://www.ibm.com.br" target="_blank"><IMG src="images_pt/logo_parceria_ibm.jpg" border="0" width="141" height="71"></A></TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+</BODY>
+</HTML>

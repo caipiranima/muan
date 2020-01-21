@@ -1,0 +1,42 @@
+#!/bin/sh
+set -e
+
+# source debconf library
+. /usr/share/debconf/confmodule
+
+case "$1" in
+    configure)
+        MUAN_SHARE_DIR="/usr/share/muan"
+        if [ -d $MUAN_SHARE_DIR ]
+        then
+                /bin/chmod 666 $MUAN_SHARE_DIR/*.xml
+        fi
+
+        #echo "POSTINST INSTALANDO....."
+        MUAN_ICON="/usr/share/applications/muan.desktop"
+        for home_dir in $(ls -d /home/*)
+        do
+            user=$(echo $home_dir | cut -d/ -f3) 
+            # looking for valid users
+            if [ "$(getent passwd | cut -d: -f1 | grep $user)" = "$user" ] 
+            then
+                su -l $user -c "xdg-desktop-icon install --novendor $MUAN_ICON"
+            fi
+        done        
+        xdg-desktop-menu install --novendor --mode system /usr/share/desktop-directories/muan.directory $MUAN_ICON
+        gtk-update-icon-cache  /usr/share/icons/hicolor/
+        ;;
+
+    upgrade|abort-upgrade)
+        #echo "POSTINST UPGRADING...."
+        ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

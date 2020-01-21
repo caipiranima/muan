@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=MUAN
+Comment=Stop Motion Animation System for Education
+Comment[es]=Stop Motion Animation System for Education
+Comment[pt_BR]=Sistema de Animação Stop Motion para Educação
+Icon=/usr/share/muan/muan_icon.png
+Type=Directory
+X-Ubuntu-Gettext-Domain=gnome-menus-3.0

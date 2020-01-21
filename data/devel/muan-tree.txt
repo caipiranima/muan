@@ -1,0 +1,62 @@
+src
+	base
+		image
+		imglist
+		video
+
+	std
+		portvideo
+		jpeg
+		ffmpeg
+
+	ext
+		tinyxml
+		dc1394
+		libjpeg
+
+	proj
+		common
+		ae
+		os
+		player
+
+==
+
+data
+	doc
+		man
+		html
+		dox
+
+	share
+
+	res
+		images
+		man	
+
+==
+
+build
+	linux
+	macos
+	win32
+
+==
+
+libs
+
+== 
+
+dist
+
+
+->
+
+CmakeLists.txt
+
+README
+
+INSTALL
+
+
+	

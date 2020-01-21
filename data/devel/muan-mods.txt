@@ -1,0 +1,9 @@
+cmake
+** static libs
+
+** read config parameters
+
+** color / bw ??
+
+** timeout ???
+

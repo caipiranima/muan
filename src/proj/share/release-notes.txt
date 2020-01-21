@@ -1,0 +1,12 @@
+Versão: 11.02-dev
+=================
+Foram corrigidos: 
+- dependências no linux
+- edição das preferências
+- nova funcinalidade tranparência 
+
+Versão: 11.01-dev
+Foram corrigidos:
+- correção de espelhamento
+- qualidade do vídeo
+- alterações na janela About

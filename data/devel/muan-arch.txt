@@ -1,0 +1,27 @@
+
+
+MUAN
+
+- UI
+  . FLTK
+
+- OPS
+  . image
+  . imglist
+  . imgviewer
+
+- Capture
+  . PortVideo
+
+- IO
+  . jpeg
+  . ffmpeg
+
+- Config
+  . XML
+
+-> Plug-Ins
+  . gstreamer
+  . imagemagick
+
+

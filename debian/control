@@ -1,0 +1,38 @@
+Source: muan
+Section: video
+Priority: optional
+Maintainer: VISGRAF Lab <visgraflab@impa.br>
+Standards-Version: 3.9.3
+Build-Depends: cmake, build-essential, libgstreamer0.10-dev, libgstreamer-plugins-base0.10-dev, libmpeg2-4-dev, libdc1394-22-dev, libdv4-dev, libavc1394-dev, libiec61883-dev, libv4l-dev, libsndfile1-dev, libgl1-mesa-dev, libglu1-mesa-dev, libjpeg8-dev
+Homepage: http://www.visgraf.impa.br/muan2
+
+Package: muan-en
+Architecture: i386 amd64
+Depends: libdc1394-22 (>= 2.1.2), libsamplerate0 (>= 0.1.7), libdv4 (>= 1.0.0), libavc1394-0 (>= 0.5.3), libiec61883-0 (>= 1.2.0),libv4l-0 (>= 0.6.4), libjpeg8 (>= 8b-1)
+Conflicts: muan-pt, muan-sp
+Description: MUAN is a Stop Motion Animation System for Education.  
+ The MUAN system allows animation movie production offering an integrated kit of hardware and software. 
+ It consists of a computer with Linux, Mac OS or Windows, a digital video camera and support over necessary acessories for interconnection. 
+ The software was conceived by ANIMA MUNDI (International Animation Festival of Brazil) and developed by the team of VISGRAF Laboratory, with the sponsorship of IBM. 
+ It consists of programs to create, edit, manipulate and visualize animations.
+
+Package: muan-pt
+Architecture: i386 amd64
+Depends: libdc1394-22 (>= 2.1.2), libsamplerate0 (>= 0.1.7), libdv4 (>= 1.0.0), libavc1394-0 (>= 0.5.3), libiec61883-0 (>= 1.2.0),libv4l-0 (>= 0.6.4), libjpeg8 (>= 8b-1)
+Conflicts: muan-en, muan-sp
+Description: MUAN is a Stop Motion Animation System for Education.  
+ The MUAN system allows animation movie production offering an integrated kit of hardware and software. 
+ It consists of a computer with Linux, Mac OS or Windows, a digital video camera and support over necessary acessories for interconnection. 
+ The software was conceived by ANIMA MUNDI (International Animation Festival of Brazil) and developed by the team of VISGRAF Laboratory, with the sponsorship of IBM. 
+ It consists of programs to create, edit, manipulate and visualize animations.
+
+Package: muan-sp
+Architecture: i386 amd64
+Depends: libdc1394-22 (>= 2.1.2), libsamplerate0 (>= 0.1.7), libdv4 (>= 1.0.0), libavc1394-0 (>= 0.5.3), libiec61883-0 (>= 1.2.0),libv4l-0 (>= 0.6.4), libjpeg8 (>= 8b-1)
+Conflicts: muan-en, muan-pt
+Description: MUAN is a Stop Motion Animation System for Education.  
+ The MUAN system allows animation movie production offering an integrated kit of hardware and software. 
+ It consists of a computer with Linux, Mac OS or Windows, a digital video camera and support over necessary acessories for interconnection. 
+ The software was conceived by ANIMA MUNDI (International Animation Festival of Brazil) and developed by the team of VISGRAF Laboratory, with the sponsorship of IBM. 
+ It consists of programs to create, edit, manipulate and visualize animations.
+

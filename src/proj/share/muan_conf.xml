@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<muan>
+    <camera id="0" type="default" >
+		<image width="max" height="max" fps="max" />
+	</camera>	
+    <iframe width="720" height="480" override="false" />
+    <prefs     
+       load_mode="1"
+       save_path="/"
+       play_sound="true"
+       show_splash="true"
+       duration_default="1"
+    />
+    <auto_save mode="0" file="/tmp/MUAN_auto_save.avi" time="300" />
+</muan>

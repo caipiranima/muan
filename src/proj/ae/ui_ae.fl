@@ -1,0 +1,1290 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0110 
+header_name {.h} 
+code_name {.cpp}
+decl {\#include <FL/Fl_File_Chooser.H>} {} 
+
+decl {\#include "video_encoder.h"} {} 
+
+decl {\#include "video.h"} {} 
+
+decl {\#define MUAN_AE} {} 
+
+decl {\#include "lang_ui.h"} {} 
+
+decl {extern void autoSave(void *);} {} 
+
+decl {extern void setLabelModeViewer(bool, bool);} {} 
+
+class MuanUI {open
+} {
+  decl {extern void setMessage(const char* m);} {}
+  decl {Bool redraw_message;} {public
+  }
+  decl {int camera_connection;} {public
+  }
+  decl {Bool camera_on;} {public
+  }
+  decl {char file_name[150];} {public
+  }
+  decl {Bool file_changed;} {public
+  }
+  decl {int duration_default;} {public
+  }
+  decl {int load_mode;} {public
+  }
+  decl {char* first_frame_file;} {public
+  }
+  decl {char* save_path;} {public
+  }
+  decl {int auto_save;} {public
+  }
+  decl {char* auto_save_file;} {public
+  }
+  decl {int auto_save_time;} {public
+  }
+  decl {int imgl_w;} {public
+  }
+  decl {int imgl_h;} {public
+  }
+  decl {int play_sound;} {public
+  }
+  decl {char* fw_device;} {public
+  }
+  decl {char* v4l_device;} {public
+  }
+  decl {int v4l_channel;} {public
+  }
+  decl {int v4l_mode;} {public
+  }
+  decl {int camera_mode_changed;} {public
+  }
+  decl {\#define MUAN_UI MuanUI} {}
+  decl {\#include "muan_ui.h"} {}
+  Function {make_window()} {} {
+    Fl_Window win_principal {
+      label {IMPA-VISGRAF/ Anima Mundi                                                  MUAN vX.X                                                  Parceria Tecnológica IBM}
+      callback {sl_timeline->value (imglist_getCurrentFnum(imgv->imgl));
+if (btn_fullscr->value())
+{
+  btn_fullscr->value(FALSE);
+  fullscr();
+}
+else
+  quit_muan();} open
+      xywh {631 153 1000 675} type Double box GTK_THIN_UP_BOX labelfont 6 labelsize 10 labelcolor 158 align 0 hotspot
+      code0 {win_principal->position(12,30);}
+      code1 {camera_on = FALSE;}
+      code2 {//se tirar readPreferences, inicializar aqui as variaveis dos parametros} visible
+    } {
+      Fl_Box imgv {
+        xywh {140 14 720 480} box EMBOSSED_FRAME
+        code0 {\#include "imgviewer.h"}
+        class ImageViewer
+      }
+      Fl_Button btn_new {
+        label {&Novo}
+        callback {new_project();}
+        xywh {6 23 130 31} box PLASTIC_UP_BOX shortcut 0x4006e labelsize 10 align 64
+      }
+      Fl_Button btn_load {
+        label {Carre&gar}
+        callback {if (check_file(FALSE) > 0)
+  load();}
+        xywh {6 79 130 31} box PLASTIC_UP_BOX shortcut 0x40067 labelsize 10 align 64
+      }
+      Fl_Button btn_insert {
+        label {&Inserir}
+        callback {insert();}
+        xywh {6 117 130 31} box PLASTIC_UP_BOX shortcut 0x40069 labelsize 10 align 64
+      }
+      Fl_Button btn_save {
+        label {&Salvar}
+        callback {is_save_as = FALSE;
+save(FALSE);}
+        xywh {6 179 130 31} box PLASTIC_UP_BOX shortcut 0x40073 labelsize 10 align 16
+      }
+      Fl_Button btn_save_as {
+        label {Salvar Como}
+        callback {is_save_as = TRUE;
+save_as(FALSE);}
+        xywh {5 217 130 31} box PLASTIC_UP_BOX shortcut 0x50073 labelsize 10 align 16
+      }
+      Fl_Button btn_export {
+        label {&Exportar}
+        callback {cb_export();}
+        xywh {5 279 130 31} box PLASTIC_UP_BOX shortcut 0x40065 labelsize 10 align 16
+      }
+      Fl_Button btn_import {
+        label {I&mportar Imagens}
+        callback {import_jpg_list();}
+        tooltip {Importar lista de imagens jpeg} xywh {6 317 130 31} box PLASTIC_UP_BOX shortcut 0x4006d labelsize 10 align 16
+      }
+      Fl_Button btn_mode {
+        label {Memoria <->Camera}
+        callback {swap_mode();}
+        xywh {5 373 133 35} box PLASTIC_UP_BOX shortcut 0x4002f selection_color 50 labelsize 10
+      }
+      Fl_Light_Button btn_range {
+        label {T&recho}
+        callback {if (btn_range->value())
+{
+  btn_range->value(validate_range(atoi(edt_begin->value()),
+                                   atoi(edt_end->value()),
+                                   atoi(out_tot_img_cap->value())));
+}}
+        xywh {144 545 85 30} box PLASTIC_UP_BOX shortcut 0x40072 labelsize 10
+      }
+      Fl_Group gb_trecho {open
+        xywh {140 500 190 40} box EMBOSSED_FRAME
+      } {
+        Fl_Input edt_begin {
+          callback {if (!validate_range(atoi(edt_begin->value()),
+                                   atoi(edt_end->value()),
+                                   atoi(out_tot_img_cap->value())))
+{
+  //limpar begin?
+  btn_range->value(FALSE);
+}}
+          xywh {186 505 49 30} type Int
+        }
+        Fl_Input edt_end {
+          callback {if (!validate_range(atoi(edt_begin->value()),
+                                   atoi(edt_end->value()),
+                                   atoi(out_tot_img_cap->value())))
+{
+  //limpar end?
+  btn_range->value(FALSE);
+}}
+          xywh {279 505 49 30} type Int
+        }
+        Fl_Button btn_begin {
+          label {Início}
+          callback {if (!camera_on)
+{
+  char s[10];
+  int valAtual = atoi(out_frame_number->value());
+
+
+  if(valAtual > 0) 
+  {
+    sprintf(s, "%d", valAtual);
+
+    edt_begin->value(s);
+  }
+  else
+  {
+    fl_alert(MSG_INVALID_FRAME_NUMBER);
+    btn_range->value(FALSE);
+  }
+}}
+          tooltip {No modo memória, clique para marcar o Início do Trecho como sendo o frame atual.} xywh {145 505 40 30} labelsize 10
+        }
+        Fl_Button btn_end {
+          label Fim
+          callback {if (!camera_on)
+{
+  char s[10];
+
+  int valAtual = atoi(out_frame_number->value());
+
+  if (valAtual > 0)
+  {
+    sprintf(s, "%d", valAtual);
+
+    edt_end->value(s);
+  }
+  else
+  {
+    fl_alert(MSG_INVALID_FRAME_NUMBER);
+    btn_range->value(FALSE);
+  }  
+}}
+          tooltip {No modo memória, clique para marcar o Fim do Trecho como sendo o frame atual.} xywh {239 505 40 30} labelsize 10
+        }
+      }
+      Fl_Light_Button btn_loop {
+        label {&Loop}
+        callback {imgv->is_looping = btn_loop->value();}
+        xywh {245 545 85 30} box PLASTIC_UP_BOX shortcut 0x4006c labelsize 10 when 1
+      }
+      Fl_Light_Button btn_flick {
+        label {&Flipar}
+        callback {flick();}
+        xywh {10 530 120 30} box PLASTIC_UP_BOX shortcut 0x40066 labelsize 10 when 1
+      }
+      Fl_Slider sl_transp {
+        callback {imgv->transp_fac = sl_transp->value();}
+        xywh {9 605 121 26} type {Horz Knob} box PLASTIC_UP_BOX color 23 step 0.05 value 0.75
+      }
+      Fl_Button btn_first {
+        label {@|<}
+        callback {first();}
+        xywh {345 499 40 40} box PLASTIC_UP_BOX down_box PLASTIC_UP_BOX shortcut 0xff50
+      }
+      Fl_Button btn_rew {
+        label {@<|}
+        callback {rew();}
+        xywh {390 499 40 40} box PLASTIC_UP_BOX shortcut 0x3c
+      }
+      Fl_Button btn_pause {
+        label {@||}
+        callback {pause();}
+        xywh {435 499 40 40} box PLASTIC_UP_BOX shortcut 0xff13
+      }
+      Fl_Button btn_play {
+        label {@>}
+        callback {play();}
+        xywh {479 499 40 40} box PLASTIC_UP_BOX shortcut 0x4ff0d
+      }
+      Fl_Button btn_fwd {
+        label {@|>}
+        callback {fwd();}
+        xywh {524 499 40 40} box PLASTIC_UP_BOX shortcut 0x3e color 50
+      }
+      Fl_Button btn_last {
+        label {@>|}
+        callback {last();}
+        xywh {569 499 40 40} box PLASTIC_UP_BOX shortcut 0xff57
+      }
+      Fl_Input edt_go_to_frame {
+        label {Ir para   }
+        callback {go_to_frame();}
+        xywh {675 505 45 30} type Int labelsize 10 when 8
+      }
+      Fl_Input edt_duration {
+        label {Duração}
+        callback {duration();}
+        tooltip {No modo memória altera a duração do frame atual. No modo câmera, define a duração do próximo frame a ser capturado.} xywh {780 505 45 30} type Int labelsize 10 align 36
+      }
+      Fl_Button btn_capture {
+        label CAPTURAR
+        callback {capture();}
+        xywh {360 575 234 65} box PLASTIC_UP_BOX shortcut 0x5c color 246 selection_color 238 labeltype EMBOSSED_LABEL labelcolor 56 align 16
+        code0 {\#include "defaults.h"}
+        code1 {\#include "sndfile-play.h"}
+      }
+      Fl_Output lbl_version {
+        label {MUAN  vX.X}
+        xywh {865 8 20 25} box NO_BOX labeltype ENGRAVED_LABEL labelfont 1 labelsize 10 align 8 textsize 10
+      }
+      Fl_Button btn_exit {
+        label Sair
+        callback {quit_muan();}
+        xywh {880 36 110 31} box PLASTIC_UP_BOX labelsize 10 align 16
+      }
+      Fl_Button btn_about {
+        label Sobre
+        callback {about();}
+        xywh {880 96 110 31} box PLASTIC_UP_BOX labelsize 10
+      }
+      Fl_Button btn_manual {
+        label Manual
+        callback {manual();}
+        xywh {880 133 110 31} box PLASTIC_UP_BOX shortcut 0xffbe labelsize 10
+        code0 {\#include <sys/types.h>}
+        code1 {\#include <unistd.h>}
+      }
+      Fl_Button btn_preferences {
+        label Preferencias
+        callback {preferences();}
+        xywh {880 198 110 31} box PLASTIC_UP_BOX labelsize 10
+      }
+      Fl_Button btn_remove {
+        label Remover
+        callback {remove();}
+        tooltip {Remove o frame atual.} xywh {245 584 85 26} box PLASTIC_UP_BOX shortcut 0xffff labelsize 10
+      }
+      Fl_Button btn_remove_direct {
+        callback {if (!camera_on)
+{  
+
+  imglist_removeInRange( imgv->imgl, imglist_getCurrentFnum(imgv->imgl), imglist_getCurrentFnum(imgv->imgl) );
+
+  file_changed = TRUE;
+  redraw_message = TRUE;
+
+}
+else
+{
+  fl_alert("Esta operacão não será executada. Alterne para o modo memória para visualizar o frame a ser removido.");
+}}
+        tooltip {Remove o frame atual sem confirmacão.} xywh {870 439 110 31} box NO_BOX shortcut 0x4ffff color 246 hide deactivate
+      }
+      Fl_Button btn_clear_range {
+        label Limpar
+        callback {edt_begin->value(NULL);
+edt_end->value(NULL);}
+        xywh {25 524 45 31} box PLASTIC_UP_BOX selection_color 215 hide deactivate
+      }
+      Fl_Group gb_current {
+        label Atual
+        xywh {625 594 370 44} box ENGRAVED_FRAME align 5
+      } {
+        Fl_Output out_frame_number {
+          label Captura
+          xywh {669 600 75 31} box ENGRAVED_BOX color 0 labelsize 10 when 6 textsize 21 textcolor 55
+        }
+        Fl_Input out_current_frame_duration {
+          label {Duração}
+          xywh {912 599 80 32} color 0 selection_color 24 labelsize 10 when 8 textcolor 7
+        }
+        Fl_Output out_frame_pos {
+          label Frame
+          xywh {782 599 80 32} box ENGRAVED_BOX color 0 labelsize 10 when 6 textsize 21 textcolor 55
+        }
+      }
+      Fl_Group gb_total {
+        label Total
+        xywh {861 499 135 88} box ENGRAVED_FRAME align 5
+      } {
+        Fl_Output out_tot_img_cap {
+          label Capturas
+          xywh {911 508 80 32} box ENGRAVED_BOX color 0 labelsize 10 when 6 textsize 21 textcolor 7
+        }
+        Fl_Output out_tot_frames {
+          label Frames
+          xywh {911 548 80 32} box ENGRAVED_BOX color 0 labelsize 10 when 6 textsize 21 textcolor 7
+        }
+      }
+      Fl_Text_Display pn_message {
+        xywh {1 651 608 22} box THIN_DOWN_FRAME
+      }
+      Fl_Output out_message {
+        xywh {14 651 584 22} box NO_BOX labeltype ENGRAVED_LABEL labelfont 1 labelsize 18 align 8 textsize 10
+      }
+      Fl_Text_Display pn_file_name {
+        xywh {608 651 390 22} box THIN_DOWN_FRAME
+      }
+      Fl_Output out_file_name {
+        label {Arquivo:}
+        xywh {661 652 331 20} box NO_BOX selection_color 0 labelsize 10 textsize 12
+      }
+      Fl_Light_Button btn_fullscr {
+        label {Tela cheia}
+        callback {fullscr();}
+        xywh {6 435 131 25} box PLASTIC_UP_BOX shortcut 0x8ff0d labelsize 10
+      }
+      Fl_Slider sl_timeline {
+        callback {timeline();}
+        xywh {345 544 265 21} type {Horz Knob} box PLASTIC_UP_BOX color 23
+      }
+      Fl_Button btn_paste {
+        label Colar
+        callback {//int beginValue=atoi(edt_begin->value());
+//int endValue=atoi(edt_end->value());
+// LCV imglist_paste( imgv->imgl, beginValue, endValue );
+imgv->paste_frame();}
+        xywh {144 619 85 26} box PLASTIC_UP_BOX labelsize 10
+      }
+      Fl_Button btn_copy {
+        label Copiar
+        callback {if (btn_range->value()) {
+
+	int begin =atoi(edt_begin->value());
+	int end   =atoi(edt_end->value());
+	imgv->copy_frame(begin, end);
+	btn_range->value(0); 
+
+} else {
+	imgv->copy_frame();
+}}
+        xywh {144 584 85 26} box PLASTIC_UP_BOX labelsize 10
+      }
+      Fl_Button btn_inverted_paste {
+        label {Colar Invertido}
+        callback {imgv->paste_frame(true);}
+        xywh {245 619 85 26} box PLASTIC_UP_BOX labelsize 10
+      }
+      Fl_Light_Button btn_transp {
+        label {&Transp}
+        callback {transp();}
+        xywh {10 565 120 30} box PLASTIC_UP_BOX shortcut 0x40066 labelsize 10 when 1
+      }
+      Fl_Light_Button btn_filter {
+        label {Timelapse (1s)}
+        callback {filter();}
+        xywh {884 306 105 30} box PLASTIC_UP_BOX labelsize 10 when 1
+      }
+      Fl_Button btn_process {
+        label Proc
+        callback {process();}
+        tooltip {Process frames} xywh {884 399 105 27} box PLASTIC_UP_BOX labelsize 10
+      }
+      Fl_Button btn_bug {
+        label {Reportar Erro}
+        callback {bug_report();}
+        xywh {880 239 110 31} box PLASTIC_UP_BOX labelsize 10
+        code0 {\#include <sys/types.h>}
+        code1 {\#include <unistd.h>}
+      }
+      Fl_Button btn_fselect {
+        label {selecionar filtro}
+        callback {filt_select(0);}
+        xywh {885 340 105 25} box PLASTIC_UP_BOX labelfont 2 labelsize 10
+      }
+      Fl_Button btn_mselect {
+        label {selecionar filtro}
+        callback {filt_select(1);}
+        xywh {885 430 105 25} box PLASTIC_UP_BOX labelfont 2 labelsize 10
+      }
+      Fl_Group {} {open
+        xywh {880 301 115 70} box ENGRAVED_FRAME labeltype NO_LABEL
+      } {}
+      Fl_Group {} {open
+        xywh {880 395 115 64} box ENGRAVED_FRAME labeltype NO_LABEL
+      } {}
+    }
+    code {win_principal->label(LBL_WIN_PRINCIPAL);
+
+btn_exit->label(LBL_BTN_EXIT);
+
+btn_new->label(LBL_BTN_NEW);
+btn_new->tooltip(HNT_BTN_NEW);
+
+btn_load->label(LBL_BTN_LOAD);
+btn_load->tooltip(HNT_BTN_LOAD);
+
+btn_insert->label(LBL_BTN_INSERT);
+btn_insert->tooltip(HNT_BTN_INSERT);
+
+btn_save->label(LBL_BTN_SAVE);
+btn_save->tooltip(HNT_BTN_SAVE);
+
+btn_save_as->label(LBL_BTN_SAVE_AS);
+btn_save_as->tooltip(HNT_BTN_SAVE_AS);
+
+btn_export->label(LBL_BTN_EXPORT);
+btn_export->tooltip(HNT_BTN_EXPORT);
+
+btn_import->label(LBL_BTN_IMPORT);
+btn_import->tooltip(HNT_BTN_IMPORT);
+
+btn_fullscr->label(LBL_BTN_FULLSCR);
+btn_fullscr->tooltip(HNT_BTN_FULLSCR);
+
+btn_mode->label(LBL_BTN_MODE_MEM);
+btn_mode->tooltip(HNT_BTN_MODE);
+
+btn_range->label(LBL_BTN_RANGE);
+btn_range->tooltip(HNT_BTN_RANGE);
+
+btn_begin->label(LBL_BTN_BEGIN);
+btn_begin->tooltip(HNT_BTN_BEGIN);
+
+btn_end->label(LBL_BTN_END);
+btn_end->tooltip(HNT_BTN_END);
+
+btn_loop->label(LBL_BTN_LOOP);
+btn_loop->tooltip(HNT_BTN_LOOP);
+
+btn_flick->label(LBL_BTN_FLICK);
+btn_flick->tooltip(HNT_BTN_FLICK);
+
+//btn_first->label(LBL_BTN_FIRST);
+btn_first->tooltip(HNT_BTN_FIRST);
+
+//btn_rew->label(LBL_BTN_REW);
+btn_rew->tooltip(HNT_BTN_REW);
+
+//btn_pause->label(LBL_BTN_PAUSE);
+btn_pause->tooltip(HNT_BTN_PAUSE);
+
+//btn_play->label(LBL_BTN_PLAY);
+btn_play->tooltip(HNT_BTN_PLAY);
+
+//btn_fwd->label(LBL_BTN_FWD);
+btn_fwd->tooltip(HNT_BTN_FWD);
+
+//btn_last->label(LBL_BTN_LAST);
+btn_last->tooltip(HNT_BTN_LAST);
+
+edt_go_to_frame->label(LBL_EDT_GO_TO);
+edt_go_to_frame->tooltip(HNT_EDT_GO_TO);
+
+btn_copy->label(LBL_BTN_COPY);
+btn_copy->tooltip(HNT_BTN_COPY);
+
+btn_paste->label(LBL_BTN_PASTE);
+btn_paste->tooltip(HNT_BTN_PASTE);
+
+btn_inverted_paste->label(LBL_BTN_INVERTED_PASTE);
+btn_inverted_paste->tooltip(HNT_BTN_INVERTED_PASTE);
+
+edt_duration->label(LBL_EDT_DURATION);
+edt_duration->tooltip(HNT_EDT_DURATION);
+
+btn_capture->label(LBL_BTN_CAPTURE);
+btn_capture->tooltip(HNT_BTN_CAPTURE);
+
+lbl_version->label(LBL_VERSION);
+
+btn_about->label(LBL_BTN_ABOUT);
+btn_about->tooltip(HNT_BTN_ABOUT);
+
+btn_manual->label(LBL_BTN_MANUAL);
+btn_manual->tooltip(HNT_BTN_MANUAL);
+
+btn_bug->label(LBL_BTN_BUG);
+btn_bug->tooltip(HNT_BTN_BUG);
+
+btn_process->label(LBL_BTN_PROCESS);
+btn_process->tooltip(HNT_BTN_PROCESS);
+
+btn_mselect->label(LBL_BTN_MSELECT);
+btn_mselect->tooltip(HNT_BTN_MSELECT);
+
+btn_filter->label(LBL_BTN_FILTER);
+btn_filter->tooltip(HNT_BTN_FILTER);
+
+btn_fselect->label(LBL_BTN_FSELECT);
+btn_fselect->tooltip(HNT_BTN_FSELECT);
+
+btn_preferences->label(LBL_BTN_PREFERENCES);
+btn_preferences->tooltip(HNT_BTN_PREFERENCES);
+
+btn_remove->label(LBL_BTN_REMOVE);
+btn_remove->tooltip(HNT_BTN_REMOVE);
+
+btn_remove_direct->label(LBL_BTN_REMOVE_DIRECT);
+btn_remove_direct->tooltip(HNT_BTN_REMOVE_DIRECT);
+
+gb_current->label(LBL_GB_CURRENT);
+
+out_frame_number->label(LBL_OUT_FRAME_NUMBER);
+out_frame_number->tooltip(HNT_OUT_FRAME_NUMBER);
+
+out_current_frame_duration->label(LBL_OUT_CURRENT_FRAME_DURATION);
+out_current_frame_duration->tooltip(HNT_OUT_CURRENT_FRAME_DURATION);
+
+out_frame_pos->label(LBL_OUT_FRAME_POS);
+out_frame_pos->tooltip(HNT_OUT_FRAME_POS);
+
+gb_total->label(LBL_GB_TOTAL);
+
+out_tot_img_cap->label(LBL_OUT_TOT_IMG_CAP);
+out_tot_img_cap->tooltip(HNT_OUT_TOT_IMG_CAP);
+
+out_tot_frames->label(LBL_OUT_TOT_FRAMES);
+out_tot_frames->tooltip(HNT_OUT_TOT_FRAMES);
+
+out_file_name->label(LBL_OUT_FILE_NAME);
+out_file_name->tooltip(HNT_OUT_FILE_NAME);} {}
+  }
+  Function {make_preferences_subwindow()} {open
+  } {
+    Fl_Window win_preferences {
+      label {Preferências} open
+      xywh {1077 350 510 500} type Double visible
+    } {
+      Fl_Group {} {
+        callback {\#ifdef WIN32
+{
+   ck_show_camera_config->deactivate();
+}
+
+\#endif} open
+        xywh {5 5 497 460} box EMBOSSED_FRAME align 5
+      } {
+        Fl_Choice cmb_load_mode {
+          label {Modo de carregar }
+          xywh {147 11 313 25} down_box BORDER_BOX
+        } {}
+        Fl_Input edt_save_path {
+          label {Salvar em}
+          xywh {167 110 288 25}
+        }
+        Fl_Repeat_Button btn_save_path {
+          label {...}
+          callback {char *dirname = fl_dir_chooser( LBL_SAVE_PATH_DIR_CHOOSER, save_path, 0 );
+
+
+if (dirname != NULL)
+  edt_save_path->value(dirname);}
+          tooltip {Selecionar arquivo} xywh {467 110 25 25}
+        }
+        Fl_Value_Input edt_duration_default {
+          label {Duração padrão}
+          callback {check_duration_default();} selected
+          xywh {172 140 50 25} value 3
+        }
+        Fl_Check_Button ck_auto_save {
+          label {Salvar automático}
+          callback {if (ck_auto_save->value())
+  gb_auto_save->activate();
+else
+  gb_auto_save->deactivate();}
+          xywh {22 165 135 25} down_box DOWN_BOX
+        }
+        Fl_Group gb_auto_save {
+          xywh {23 193 467 97} box EMBOSSED_FRAME align 5 deactivate
+        } {
+          Fl_Input edt_auto_save_file {
+            label Arquivo
+            xywh {93 208 362 25}
+          }
+          Fl_Repeat_Button btn_auto_save_file {
+            label {...}
+            callback {char *fname = fl_file_chooser( LBL_AUTO_SAVE_FILE_CHOOSER, "*.avi", "*.avi", 0 );
+if (fname != NULL)
+  edt_auto_save_file->value(fname);}
+            tooltip {Selecionar arquivo} xywh {456 208 25 25}
+          }
+          Fl_Value_Input edt_auto_save_time {
+            label {Tempo  }
+            xywh {94 244 50 25} value 5
+          }
+          Fl_Output out_seconds {
+            label segundos
+            xywh {215 244 25 25} box NO_BOX
+          }
+        }
+        Fl_Group gb_camera_connection {
+          label {Camera Connection} open
+          xywh {25 310 430 149} box EMBOSSED_FRAME align 5
+        } {
+          Fl_Round_Button btn_camera_firewire {
+            label {DV-1394 (Linux)}
+            callback {\#if 1
+\#if defined(__APPLE__) || defined(WIN32)
+ btn_camera_firewire->value(0);
+\#else
+ if (btn_camera_firewire->value()) {
+//  int resposta = fl_choice("Changing Camera Connection: MUAN will save prefs and quit", LBL_CANCEL, NULL, LBL_YES);
+  int resposta = fl_choice(MESSAGE_CHOICE, LBL_CANCEL, NULL, LBL_YES);
+   if (resposta == 2) {
+    cmb_camera_v4l->hide();
+    btn_camera_v4l->value(0);
+    btn_camera_dc1394->value(0);
+    btn_camera_default->value(0);
+    camera_mode_changed = TRUE;
+   } else {
+     btn_camera_firewire->value(!btn_camera_firewire->value());
+  }
+ }
+\#endif
+\#else
+btn_camera_firewire->value(!btn_camera_firewire->value());
+\#endif}
+            xywh {55 385 120 25} down_box ROUND_DOWN_BOX
+          }
+          Fl_Round_Button btn_camera_v4l {
+            label {V4L-2 (Linux)}
+            callback {\#if 1
+\#if defined(__APPLE__) || defined(WIN32)
+ btn_camera_v4l->value(0);
+ cmb_camera_v4l->hide();
+\#else
+ if (btn_camera_v4l->value()) {
+  int resposta = fl_choice(MESSAGE_CHOICE, LBL_CANCEL, NULL, LBL_YES);
+   if (resposta == 2) {
+    btn_camera_firewire->value(0);
+    btn_camera_dc1394->value(0);
+    btn_camera_default->value(0);
+    camera_mode_changed = TRUE;
+    cmb_camera_v4l->show();
+   } else {
+     btn_camera_v4l->value(!btn_camera_v4l->value());
+     cmb_camera_v4l->hide();
+   }
+ }
+\#endif
+\#else
+ btn_camera_v4l->value(!btn_camera_v4l->value());
+\#endif}
+            xywh {55 355 75 20} down_box ROUND_DOWN_BOX
+          }
+          Fl_Round_Button btn_camera_dc1394 {
+            label {DC-1394 (Linux)}
+            callback {\#if 1
+\#if defined(__APPLE__) || defined(WIN32)
+ btn_camera_dc1394->value(0);
+\#else
+ if (btn_camera_dc1394->value()) {
+  int resposta = fl_choice(MESSAGE_CHOICE, LBL_CANCEL, NULL, LBL_YES);
+  if (resposta == 2) {
+    cmb_camera_v4l->hide();
+    btn_camera_v4l->value(0);
+    btn_camera_firewire->value(0);
+    btn_camera_default->value(0);
+    camera_mode_changed = TRUE;
+  } else {
+    btn_camera_dc1394->value(!btn_camera_dc1394->value());
+  }
+ }
+\#endif
+\#else
+btn_camera_dc1394->value(!btn_camera_dc1394->value());	
+\#endif}
+            xywh {55 415 100 25} down_box ROUND_DOWN_BOX
+          }
+          Fl_Round_Button btn_camera_default {
+            label {Default (MacOS, Windows,Linux)}
+            callback {\#if 1
+\#if defined(__APPLE__) || defined(WIN32)
+  btn_camera_default->value(!btn_camera_default->value());
+\#else
+  if (btn_camera_default->value() ) {
+  //int resposta = fl_choice("Changing Camera Connection: MUAN will save prefs and quit", LBL_CANCEL, NULL, LBL_YES);
+  int resposta = fl_choice(MESSAGE_CHOICE, LBL_CANCEL, NULL, LBL_YES);
+  if (resposta == 2) {
+    cmb_camera_v4l->hide();
+    btn_camera_v4l->value(0);
+    btn_camera_firewire->value(0);
+    btn_camera_dc1394->value(0);
+    camera_mode_changed = TRUE;
+  } else {
+    btn_camera_default->value(!btn_camera_default->value());
+  }
+ }
+\#endif
+\#else
+if (0) {
+if (btn_camera_default->value()) {
+  cmb_camera_v4l->hide();
+  btn_camera_v4l->value(0);
+  btn_camera_dc1394->value(0);
+  btn_camera_firewire->value(0);
+}
+}
+\#endif}
+            xywh {55 320 85 25} down_box ROUND_DOWN_BOX
+          }
+          Fl_Choice cmb_camera_v4l {
+            callback {\#if defined(__APPLE__) || defined(WIN32)
+ cmb_camera_v4l->clear();
+ cmb_camera_v4l->hide();
+\#else
+ if (cmb_camera_v4l->changed()) {
+   efree(v4l_device);
+   v4l_device = (char*) emalloc(4);
+   sprintf(v4l_device,"%d",cmb_camera_v4l->value());
+   
+   int resposta = fl_choice(MESSAGE_CHOICE, LBL_CANCEL, NULL, LBL_YES);
+   if (resposta == 2) {
+    camera_mode_changed = TRUE;
+   }
+ }
+\#endif} open
+            xywh {175 353 60 25} down_box BORDER_BOX
+          } {}
+        }
+        Fl_Group gb_image_size {
+          label {Tamanho da Imagem} open
+          xywh {25 56 467 50} box EMBOSSED_BOX align 5
+        } {
+          Fl_Value_Input edt_img_w {
+            label Width
+            callback {if (edt_img_w->value() != imgl_w){
+  show_save_prefs_window();
+}}
+            xywh {71 71 90 25} when 4 deactivate
+          }
+          Fl_Value_Input edt_img_h {
+            label Height
+            callback {if (edt_img_h->value() != imgl_h){
+  show_save_prefs_window();
+}}
+            xywh {221 70 90 25} when 4 deactivate
+          }
+          Fl_Check_Button ck_override {
+            label Override
+            callback {if (ck_override->value())
+{
+  edt_img_w->activate();
+  edt_img_h->activate();
+   
+}
+else
+{
+  edt_img_w->deactivate();
+  edt_img_h->deactivate();
+}
+
+show_save_prefs_window();}
+            xywh {329 61 135 25} down_box DOWN_BOX
+          }
+          Fl_Check_Button ck_show_camera_config {
+            label {Show Camera Config}
+            callback {show_camera_config = false;
+if(ck_show_camera_config->value())
+  show_camera_config = true;
+show_save_prefs_window();}
+            xywh {329 81 135 25} down_box DOWN_BOX
+          }
+        }
+        Fl_Check_Button ck_show_splash {
+          label {Exibir Tela Inicial}
+          callback {show_splash = false;
+if (ck_show_splash->value())
+  show_splash = true;}
+          xywh {340 165 70 15} down_box DOWN_BOX
+        }
+      }
+      Fl_Return_Button btn_save_pref {
+        label Salvar
+        callback {//save preferences
+
+win_preferences->cursor(FL_CURSOR_WAIT);
+
+if ((!auto_save) && (ck_auto_save->value()))
+  Fl::add_timeout((int)edt_auto_save_time->value(), &autoSave);
+else
+{
+  if ((auto_save) && (!ck_auto_save->value()))
+    Fl::remove_timeout(&autoSave);
+  else
+    if ((auto_save) && 
+        (ck_auto_save->value()) && 
+        (auto_save_time != (int)edt_auto_save_time->value()))
+    {
+      Fl::remove_timeout(&autoSave);
+      Fl::add_timeout((int)edt_auto_save_time->value(), &autoSave);
+    }
+}
+
+if (btn_camera_firewire->value())
+    camera_connection = CAM_DV1394;
+else if (btn_camera_v4l->value())
+    camera_connection = CAM_V4L;
+else if (btn_camera_dc1394->value())
+    camera_connection = CAM_DC1394;
+else if (btn_camera_default->value())
+    camera_connection = CAM_DEFAULT;
+    
+
+{
+  load_mode = cmb_load_mode->value();
+
+  //free(first_frame_file);
+  //first_frame_file = "";
+
+  if(save_path)
+    free(save_path);
+  if (edt_save_path->value()[strlen(edt_save_path->value())-1] == '/' )
+  {
+    save_path = (char *) malloc(strlen(edt_save_path->value())+1);
+    strcpy(save_path, edt_save_path->value());
+  }
+  else
+  {
+    save_path = (char *) malloc(strlen(edt_save_path->value())+2);
+    strcpy(save_path, edt_save_path->value());
+    strcat(save_path, "/");
+  }
+  duration_default = (int)edt_duration_default->value();
+  auto_save = ck_auto_save->value();
+
+  if(auto_save_file)
+    free(auto_save_file);
+  auto_save_file = (char *) malloc(strlen(edt_auto_save_file->value())+1);
+  strcpy(auto_save_file, edt_auto_save_file->value());
+
+  auto_save_time = (int)edt_auto_save_time->value();
+  
+  imgl_w = (int)edt_img_w->value();
+  imgl_h = (int)edt_img_h->value();
+  imgl_override = ck_override->value();
+
+}
+ 
+//video_setv4l(v4l_device, v4l_channel, v4l_mode);
+//video_setfirewire(fw_device);
+//sempre vou chamar changeConnect pois 
+//pode acontecer de manter o tipo de 
+//conexao (v4l) e mudar as configuracoes, 
+//entao tem que reabrir conexao.
+//imgv->changeConnectMode( camera_connection );
+
+
+writePreferences();
+
+if (camera_mode_changed)  exit(0);
+
+win_preferences->cursor(FL_CURSOR_DEFAULT);
+
+
+win_preferences->hide();}
+        xywh {295 470 95 25}
+      }
+      Fl_Button btn_cancel_pref {
+        label Cancelar
+        callback {win_preferences->hide();}
+        xywh {400 470 105 25} when 6
+      }
+    }
+    code {win_preferences->label(LBL_WIN_PREFERENCES);
+
+cmb_load_mode->label(LBL_CMB_LOAD_MODE);
+cmb_load_mode->add(LBL_MODO_NUM_MUAN);
+cmb_load_mode->add(LBL_MODO_TODOS_FRAMES);
+cmb_load_mode->add(LBL_MODO_COMPARA_FRAMES);
+
+edt_save_path->label(LBL_EDT_SAVE_PATH);
+
+btn_save_path->tooltip(HNT_BTN_SAVE_PATH);
+
+edt_duration_default->label(LBL_EDT_DURATION_DEFAULT);
+
+ck_show_splash->label(LBL_CK_SHOW_SPLASH);
+
+ck_auto_save->label(LBL_CK_AUTO_SAVE);
+
+edt_auto_save_file->label(LBL_EDT_AUTO_SAVE_FILE);
+
+btn_auto_save_file->tooltip(HNT_BTN_AUTO_SAVE_FILE);
+
+edt_auto_save_time->label(LBL_AUTO_SAVE_TIME);
+
+out_seconds->label(LBL_OUT_SECONDS);
+
+gb_camera_connection->label(LBL_GB_CAMERA_CONNECTION);
+
+btn_save_pref->label(LBL_BTN_SAVE);
+
+btn_cancel_pref->label(LBL_CANCEL);
+
+gb_image_size->label(LBL_GB_IMAGE_SIZE);} {}
+    code {cmb_load_mode->value(load_mode);
+
+edt_save_path->value(save_path);
+edt_duration_default->value(duration_default);
+
+ck_show_splash->value(show_splash);
+
+ck_auto_save->value(auto_save);
+edt_auto_save_file->value(auto_save_file); 
+edt_auto_save_time->value(auto_save_time);
+edt_img_w->value(imgl_w);
+edt_img_h->value(imgl_h);
+ck_override->value(imgl_override);
+
+if (ck_override->value())
+{
+  edt_img_w->activate();
+  edt_img_h->activate();
+   
+}
+
+\#ifndef WIN32
+  ck_show_camera_config->deactivate();
+\#else
+  ck_show_camera_config->value(show_camera_config);
+\#endif
+
+if (auto_save) gb_auto_save->activate();
+
+switch (camera_connection){
+  case CAM_DEFAULT: btn_camera_default->setonly();break;
+  case CAM_DV1394: btn_camera_firewire->setonly();break;
+  case CAM_DC1394: btn_camera_dc1394->setonly();break;
+  case CAM_V4L: btn_camera_v4l->setonly();break;
+}} {}
+    code {\#if defined(__APPLE__) || defined(WIN32)
+cmb_camera_v4l->hide();
+\#else
+ui_set_number_of_video_devices(this);
+
+//cmb_camera_v4l->value(0);
+if(!btn_camera_v4l->value()) {  
+  cmb_camera_v4l->hide();
+}
+\#endif} {}
+  }
+  Function {make_about_window()} {open
+  } {
+    Fl_Window win_about {
+      label Sobre open
+      xywh {329 229 375 660} type Double modal visible
+    } {
+      Fl_Group gb_img_about {open
+        image {../../../data/images/muan_about.jpg} xywh {7 5 363 602} box EMBOSSED_BOX align 16
+      } {
+        Fl_Group gb_texto_about {
+          label {MUAN is a Stop Motion Animation System. The system allows animation movie production offering an integrated kit of hardware and software. It consist of a computer with Linux, Mac OS or Windows, a digital video camera and support over necessary accessories. The software was conceived by ANIMA MUNDI and developed by the VISGRAF Laboratory with the sponsorship of IBM.}
+          xywh {30 259 320 110} box FLAT_BOX color 7 labelfont 1 labelsize 12 align 149
+        } {}
+        Fl_Group gb_link_site {
+          label {For more information, visit the website http://www.visgraf.impa.br/muan2/} open
+          xywh {25 431 330 31} box FLAT_BOX color 7 labelfont 1 labelsize 12 align 149
+        } {}
+      }
+      Fl_Group lbl_muan_about {
+        label {Manipulador Universal de ANimacões} open
+        xywh {50 148 276 22} color 0 labelfont 1 labelsize 16 labelcolor 7 align 16
+      } {}
+      Fl_Button btn_close_about {
+        label Fechar
+        callback {win_about->hide();}
+        xywh {140 619 92 35} box PLASTIC_UP_BOX selection_color 50
+      }
+    }
+    code {win_about->label(LBL_WIN_ABOUT);
+
+lbl_muan_about->label(LBL_MUAN);
+gb_texto_about->label(LBL_TEXTO_ABOUT);
+gb_link_site->label(LBL_LINK_SITE);
+
+btn_close_about->label(LBL_BTN_CLOSE);} {}
+  }
+  Function {make_splash_window()} {open
+  } {
+    Fl_Window win_splash {
+      label {MUAN - versão X.X} open
+      xywh {778 172 960 650} type Double box GTK_UP_BOX color 50 hotspot
+      code0 {win_splash->position(35,40);}
+      code1 {win_splash->take_focus();} non_modal visible
+    } {
+      Fl_Group gb_img_splash_en {open
+        image {../../../data/images/muan_splash_en.jpg} xywh {114 57 731 493} box EMBOSSED_FRAME align 16 hide
+        code0 {if( strcmp(SPLASH_IMAGE, "EN") == 0 ) gb_img_splash_en->show();}
+      } {}
+      Fl_Button btn_iniciar {
+        label {Iniciar...}
+        callback {btn_iniciar->value(1);
+btn_iniciar->deactivate();}
+        xywh {387 575 185 50} box GTK_THIN_DOWN_BOX shortcut 0xff0d color 51
+      }
+      Fl_Group gb_img_splash_sp {open
+        image {../../../data/images/muan_splash_sp.jpg} xywh {114 57 731 493} box EMBOSSED_FRAME align 16 hide
+        code0 {if( strcmp(SPLASH_IMAGE, "SP") == 0 ) gb_img_splash_sp->show();}
+      } {}
+      Fl_Group gb_img_splash_pt {open
+        image {../../../data/images/muan_splash_pt.jpg} xywh {114 57 731 493} box EMBOSSED_FRAME align 16 hide
+        code0 {if( strcmp(SPLASH_IMAGE, "PT") == 0 ) gb_img_splash_pt->show();}
+      } {}
+    }
+    code {win_splash->label(LBL_WIN_SPLASH);
+
+
+btn_iniciar->label(LBL_BTN_START);} {}
+  }
+  Function {quit_muan()} {} {
+    code {if (check_file(TRUE) > 0)
+  exit(1);} {}
+  }
+  Function {validate_range(int inicio, int fim, int total)} {return_type Bool
+  } {
+    code {if ((inicio<0) || (fim<0) ||
+      ((inicio >0) && (fim>0) && (inicio>fim)) ||
+      (inicio>total) || (fim>total))
+    {
+      fprintf(stderr, "\\a\\a");
+      fflush(stderr);
+      fl_alert(MSG_INVALID_RANGE);
+      return(FALSE);
+    }
+else
+  return(TRUE);} {}
+  }
+  Function {redraw_file_name()} {} {
+    code {if (file_changed)
+  out_file_name->textcolor(FL_RED);
+else
+  out_file_name->textcolor(FL_BLACK);
+
+out_file_name->value(file_name);} {}
+  }
+  Function {fullscr()} {} {
+    code {if (btn_fullscr->value())
+{
+  win_principal->fullscreen();
+  imgv->fullscreen();
+}
+else
+{
+  imgv->fullscreen_off(140,14,720,480);
+  win_principal->fullscreen_off(100,115,1000,675);
+  win_principal->hide();
+  win_principal->show();
+}} {}
+  }
+  Function {file_exists(char *fname)} {return_type int
+  } {
+    code {FILE *fp = fopen(fname, "r");
+
+if (fp != NULL) 
+{
+  fclose(fp);
+  return 1;
+}
+
+return 0;} {}
+  }
+  Function {swap_mode()} {} {
+    code {ui_change_mode(this);} {}
+  }
+  Function {set_memory_mode()} {} {
+    code {if (camera_on)
+{
+  camera_on = FALSE;
+  imgv->setModeViewer(camera_on, FALSE, setLabelModeViewer);
+
+}} {}
+  }
+  Function {load()} {return_type int
+  } {
+    code {return ui_load(this);} {}
+  }
+  Function {insert()} {return_type int
+  } {
+    code {return ui_insert(this);} {}
+  }
+  Function {load_file(char* fname)} {return_type int
+  } {
+    code {return ui_load_file(this, fname);} {}
+  }
+  Function {check_file(Bool _quit)} {return_type int
+  } {
+    code {int resposta = 1;
+
+if (file_changed)
+{
+  if (_quit) 
+    resposta = fl_choice(LBL_CONFIRM_SAVE_TO_CLOSE, LBL_CANCEL, LBL_YES, LBL_NO);
+  else
+    resposta = fl_choice(LBL_CONFIRM_SAVE, LBL_CANCEL, LBL_YES, LBL_NO);
+
+  if (resposta == 1 /*YES*/)
+  {
+    // Save the file...
+    resposta = save(_quit); 
+  }
+}
+
+return resposta;} {}
+  }
+  Function {save(Bool _quit)} {return_type int
+  } {
+    code {return ui_save(this, _quit);} {}
+  }
+  Function {save_as(Bool _quit)} {open return_type int
+  } {
+    code {return ui_save_as(this, _quit);} {}
+  }
+  Function {save_file(char* _fname, Bool _quit)} {return_type void
+  } {
+    code {ui_save_file(this, _fname, _quit);} {}
+  }
+  Function {cb_export()} {} {
+    code {ui_export(this);} {}
+  }
+  Function {export_file(char* fname)} {} {
+    code {ui_export_file(this, fname);} {}
+  }
+  Function {import_jpg_list()} {return_type int
+  } {
+    code {return ui_import_jpg_list(this);} {}
+  }
+  Function {new_project()} {return_type void
+  } {
+    code {return ui_new_project(this);} {}
+  }
+  Function {first()} {} {
+    code {ui_first(this);} {}
+  }
+  Function {rew()} {} {
+    code {ui_rew(this);} {}
+  }
+  Function {pause()} {} {
+    code {ui_pause(this);} {}
+  }
+  Function {play()} {} {
+    code {ui_play(this);} {}
+  }
+  Function {fwd()} {} {
+    code {ui_fwd(this);} {}
+  }
+  Function {last()} {} {
+    code {ui_last(this);} {}
+  }
+  Function {go_to_frame()} {} {
+    code {ui_go_to_frame(this);} {}
+  }
+  Function {duration()} {} {
+    code {ui_duration(this);} {}
+  }
+  Function {capture()} {} {
+    code {ui_capture(this);} {}
+  }
+  Function {about()} {} {
+    code {ui_about(this);} {}
+  }
+  Function {manual()} {} {
+    code {ui_manual(this);} {}
+  }
+  Function {preferences()} {open
+  } {
+    code {{
+  make_preferences_subwindow();     
+  win_preferences->end();
+  win_preferences->set_modal();
+  win_preferences->show();
+  while (win_preferences->shown())
+    Fl::wait();
+  free(win_preferences);
+}} {}
+  }
+  Function {remove()} {} {
+    code {ui_remove(this);} {}
+  }
+  Function {timeline()} {} {
+    code {ui_timeline(this);} {}
+  }
+  Function {flick()} {return_type void
+  } {
+    code {return ui_flick(this);} {}
+  }
+  Function {transp()} {return_type void
+  } {
+    code {return ui_transp(this);} {}
+  }
+  Function {filter()} {open
+  } {
+    code {return ui_filter(this);} {}
+  }
+  Function {process()} {} {
+    code {ui_process(this);} {}
+  }
+  Function {check_duration_default()} {} {
+    code {if (edt_duration_default->value() <= 0)
+	edt_duration_default->value(1);
+	
+if (edt_duration_default->value() > 120)
+	edt_duration_default->value(120);} {}
+  }
+  Function {bug_report()} {} {
+    code {ui_bug_report(this);} {}
+  }
+  Function {filt_select(int type)} {} {
+    code {ui_plugin_select(this, type);} {}
+  }
+  decl {Bool imgl_override;} {public
+  }
+  Function {show_save_prefs_window()} {open
+  } {
+    code {if (camera_mode_changed == FALSE)
+{
+  int resposta = fl_choice(MESSAGE_CHOICE_ALL, LBL_CANCEL, NULL, LBL_YES);
+  if (resposta == 2) 
+  {
+    camera_mode_changed = TRUE;
+  }
+  else
+  {
+    //ck_override->value(!ck_override->value());
+    //ck_show_camera_config->value(!ck_show_camera_config->value());
+  }
+}} {}
+  }
+  decl {Bool show_splash;} {public
+  }
+  decl {int out_width;} {public
+  }
+  decl {int out_height;} {public
+  }
+  decl {Bool is_save_as;} {public
+  }
+  decl {Bool show_camera_config;} {public
+  }
+} 

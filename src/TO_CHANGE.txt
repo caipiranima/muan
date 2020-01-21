@@ -1,0 +1,28 @@
+TODO - Fase 1
+------------
+
+- Preferences
+   * cam id
+   * override image size
+
+- Update (Nome / About)
+
+
+- linux DV (test ic*) / linux HDV
+
+
+- remove compilation warnings
+
+
+===============================
+
+
+TODO - Fase 2
+------------
+
+- Update Manual
+
+- New documentation
+
+- New website
+

@@ -1,0 +1,268 @@
+//by MCV and MM
+//-----------------------------------------------------------------------------
+
+/** \page intro Introduction
+
+Stop motion was the animation technique employed in the very first animated films made with the use of motion picture cameras. It's simple and intuitive principles of &quot;frame by frame&quot; shooting are the base for most of animation techniques developed later. Even today, stop-motion remains one of the most popular and communicative way of making animations. Nowadays, when computers are important tools applied in many areas, it has become possible to build applications to create and manipulate stop-motion animations in digital media, with a connected camera. This has reduced a lot the time and cost of animation productions. 
+Within this context, MUAN is a free stop motion animation system that appears to be a simple, practical and cheap alternative, to beginning and professional animators, to the creation, testing, editing and playing of stop motion animations. It's easiness of use and instantaneity makes it a powerful educational tool, allowing everyone to quickly understand and practice the principles of the animation language.
+<i>Muan is the name of a firefly in tupi-guarani, the Brazilian ancient indian language.</i>
+*/
+
+
+//-----------------------------------------------------------------------------
+
+/** \page overview Overview
+
+<h3>The Development of Animation</h3>
+
+Animation is the art of creating movement through a series of fixed images. Although along the History many different manifestations (such as paintings, sculptures, machines, toys and gadgets) already foresaw the possibilities for an illusion of movement, the first to achieve a universally convincing result was the Belgian physicist Joseph Plateau (1801-1883) who invented the phenakistoscope (&quot;spindle viewer&quot;) in 1832. This simple machine used a sequences of 10 drawings disposed on a rotating circle with slots (an adaptation of the stroboscopic effects of the Michael Faraday's Wheel). With it, Plateau was able to prove his theory of the &quot;persistence of vision&quot;, that until recently was considered the basic explanation for the whole cinematic phenomenon (including film and television). Plateau then stated that, if a sequence of fixed images, one slightly different from the other, are substituted in front of our eyes at a rate of 10 or more per second, we will perceive then as one single moving image. Besides the great curiosity and popularity provoked by the phenakistoscope. it has led to further inventions based on its concepts, such as George Horner's &quot;Zoetrope&quot; (1834), Emile Reynaud's &quot;Praxinoscope&quot; (1877) and the Lumi&egrave;re Brothers' &quot;Cinematographe&quot; (1895), this last one integrating the use of realistic photographic images, taken in a constant rate of more than 10 images per second.
+
+So, even if the Cinema history has started with the use of drawn images in Plateau's first animated &quot;cartoons&quot;, that facet was soon forgotten with the advent of &quot;real&quot; live action scenes being projected on a big screen. But, as soon as some artists discovered they could turn the crank of the camera just enough to impress one frame at a time, they realized they could do magical tricks with it, recreating or subverting the possible &quot;real&quot; movements of the objects in front of the camera. That's how animation was reborn in the cinema medium. One emblematic pioneer is American James Stuart Blackton, who did his first experiences using stop-motion. In &quot;The Haunted Hotel&quot; (1907) he was able to make dishes, knifes and forks perform as living actors in a hotel kitchen. After that, Blackton, who was a talented draftsman, soon discovered also that he could use the stop-motion technique applied to drawings instead of objects, and started producing some of the first movie cartoons in the history of animation. Due to its popularity (often linked to characters of the comic strips, another newborn art form), the drawn cartoons have become, along the 20th Century, the most popular technique for what is generally known as &quot;animation&quot;.
+
+<h3>Stop Motion Techniques</h3>
+
+Stop Motion Animation is the same basic principle used to create a cartoon (drawn or cell animation). The very term that names it comes from the fact that every image composing an animation must be a still, fixed image. Still images (stop) turn to movement (motion).
+
+An animation movie camera, therefore, must act more like a still camera that shoots, in sequence, one picture for each animation frame (be it 2D drawings or real 3D objects or living beings). The animator positions all objects or characters in a scene, takes a picture, moves an object a little bit and then takes another picture, and redo these steps until he finalizes the desired movement. These pictures are called frames of the animation movie and when we play all frames in order, we have the illusion that objects or characters are moving on their own.
+
+<h3>Animation applied to Education</h3>
+
+The MUAN system was originally designed to fit the particular needs of a methodology of teaching animation as an educational language. This methodology has been developed by Anima Escola, the educational project put on by Anima Mundi, the International Animation Festival of Brazil. Anima Escola and Anima Mundi are detailed in Section \ref{Conclusion}.
+
+The animation workshops of Anima Escola aim to make the animation language accessible and easy to use in the classroom. Intuitive and expressive materials and tools such as plasticine, paper cut-outs and body expressions are applied to stop-motion techniques to create animation scenes, in the fastest and easiest way possible. In this way, the student learns to use animation as a natural and familiar language, and not as an intricate and expensive technology as the common sense used to classify it.
+
+The technological solution brought by the MUAN system makes all the process very simple and fast, making it usable also by professional animators who want a fast result for a test or video-assisting tool in the production of stop-motion animation.
+
+*/
+
+//-----------------------------------------------------------------------------
+
+
+/** \page architecture System Architeture
+
+The MUAN system was developed for multi-platform (Linux, Mac OS e Windows) and the software part uses a lot of libraries or program codes that are freely distributed, making the application very flexible for evaluations.
+The main idea of the system MUAN is to show images comming from a camera video stream and allow user to select the desired images. A set of captured/selected images will form an animation. How this process works and its requirements are described below.
+
+<h3> System Description</h3>
+
+The Muan software provides very important features of Stop Motion like toggling between stored and live frames, instantaneous preview of animation, delete/insert of frames, frame markers and frame flipping. 
+
+This last feature is very useful for Stop Motion because it allows to compare the last frame with the image coming from the camera (live incomming frame) so the user can check if the frame to be stored is the desired one and can adjust the scene accordinly. Frame markers are used to modify the duration (delay), to play or delete an interval of frames. By duration we means the time that the frame will be repeated within the animation sequence, as shown in Figure below.
+
+\image html frame_duration.gif "Representation of frame duration" height=2.5cm
+
+To provide Stop Motion features, we create an image list to store the frames of the animation, that is, the captured images with their properties like delay, time stamp, duration and position at the list. With a list, we can manipulate positions, visualizing any frame of animation at any time. Thus, on the user interface we provide components for playing or stoping animation, rewind, forward, go to first, to last or to an arbitrary frame position on the list, and clear all the list or remove some or several stored frames. Besides, user can choose if application is in camera mode, showing live frames, or memory mode, showing the captured images. In both modes, images are displayed in an OpenGL window, so the image to be shown is an array of pixels in RGB system color. But in the list, the stored frames are saved in DV format. Although this format contains image and sound information, its lenght is more compressed than a simple array of pixels. 
+
+Because the application has to show live frames comming from the camera, we create a thread which is continuously getting images from the camera in real time. When connected via firewire, application establish a communication with the camera and grabs DV data. Images in DV format have 3:2 aspect ratio, that is, widescreen. In our purpose, we are not working with sound for the animation, we are focused on capture only images, so the captured DV frame has its sound track erased. When the connection with camera is over a composite or s-video input, application opens a direct communication with device, capturing images as an array of pixels in 24 bit RGB pallete. In this case, captured images are in 4:3 aspect ratio, so we put a black band on the laterals of the image and convert it into DV format to put it in the list of captured frames.
+
+Once all desired frames were captured, user can save the animation asking to application for generate a video file. Muan can record video files in AVI or MPEG formats. Another option is to save each frame as an image file in JPEG format. Thus, we also provide functions to read AVI or MPG video files and RAS or JPG image files. User can open one of these files and edit it or can insert files of these formats in an animation that is being created.
+
+Options like view image window in full screen, play the animation continuously or in loop and flip operation, that alternate camera mode and memory mode providing a helpful feature for the animator to analize the last or next frame to be captured, are also present in user interface, leading application to be more friendly.
+
+
+<h3>System Interface</h3>
+
+We can describe the interactions of our system like this:
+
+\image html muan_architecture.png
+
+In order to provide functionalities listed in section System Description, we used some libraries commonly and that are freely distributed. 
+
+We create a video library that implements functions of interface with I/O communication using the libraries/drivers according to the type of connection.  
+
+To implement the functions that store the animation in video files, we use the libavcodec and libavformat libraries, which compose the FFmpeg Project (http://ffmpeg.mplayerhq.hu/). FFmpeg has functionalities to record, convert and stream audio and video and is developed under Linux, but it can be compiled under most operating systems, including Windows and MacOS. Libavcodec library contains all the FFmpeg audio/video encoders and decoders. Most of this codecs were developped from scratch to ensure best performances and high code reusability. Libavformat library contains parsers and generators for all common audio/video formats. With these libraries, application is able to read and write MPEG files.
+
+To import JPEG images to an animation or export the frames of an animation to JPEG images, we use libjpeg which is a widely used free library for handling the JPEG image format, writed and distributed by IJG (http://www.ijg.org/). Our code for converting to and from this format was based, respectively, on cjpeg and djpeg that are programs included in this library.
+
+The class ImgList implements the animation representation with a list used to store frames. And to represent images or the frames of an animation, we used 2 classes: one that implements the frame only as an image, that is, an array of pixels (colors), and another that implements the frame as DV data, like it comes from digital devices through a firewire connection. 
+
+Another widely used free C library that we use in MUAN is libsndfile. Libsndfile is a simple and easy to use API for reading and writing a large number of file formats containing sampled sound and can be usable on Unix, Win32, MacOS and others. On linux, libsndfile can works over ALSA driver (Advanced Linux Sound Architecture), which provides audio and MIDI functionality to this operating system, and we are requiring this option. As already said, we are not working with sound for animation, but sometimes we need sound on the user interface providing a better and easier interaction. %So we are using libsndfile and requiring ALSA driver on the computer.
+
+*/
+
+//-----------------------------------------------------------------------------
+
+
+/** \page software Software
+
+   We developed two applications: Muan and Muan Player. 
+
+The first one allows users to create, edit, manipulate and play animations, acquiring images from a camera connected by firewire connection or analog capture card installed.
+
+Muan_AE consists of one unique main window that provides an image area, where images incoming from camera or captured images are displayed, and large buttons for each operation, making the application easier for kids and inexperienced (beginners) users that appear in the scope of AnimaEscola Project.
+
+\image html muan_ae.gif "Muan_AE Interface" height=6.5cm
+
+Muan Player is a simple interface for playing animations. From version 3.0, it was incorporated valuables resources of import/export animations from/for diferents formats and play animation in full screen. If user has a collection of images, he can create an animation from them, importing all JPG images from a directory (application uses numeric-alphabetic order) and then saving in desired video file format. Moreover, this application can be used on others platforms, since the ffmpeg library has been instaled.
+
+\image html muan_player.gif "Muan Player Interface" height=6.5cm
+
+*/
+
+//-----------------------------------------------------------------------------
+
+
+/** \page appl Applications
+
+The Muan System was designed in conjunction with professional animators and educators who are used to an intense and daily use of animation. Due to this partnership, we have a robust system, tested by many users in real situations and by animators in their daily work. 
+
+As successfully examples, we mention Anima Mundi Festival and Anima Escola Project.
+
+<h3>Anima Mundi</h3>
+
+<a href="http://www.animamundi.com.br/muda_idioma.asp?lan=en" target="_blank">Anima Mundi</a> is the International Animation Festival of Brazil. Annually, since 1993, it presents competition screenings, special programs, retrospectives, international guests and professional workshops. One of the main features of the festival are the OPEN STUDIOS, were open and free workshops take place allowing the spectators to create and produce their own animation scenes in clay, drawing, sand, pixilation and cut-outs, with the advice of specialized professionals. The final results are seen immediately on video. The MUAN System has been successfully used and tested in those workshops in the last three years, significantly enhancing the results and efficacy of the works.
+
+<table border="0">
+<tr><td>\image html am2006_1.jpg ""</td><td>\image html am2006_2.jpg ""</td></tr>
+</table>
+
+<h3>Anima Escola</h3>
+
+<a href="http://www.animamundi.com.br/esc_home.asp?lan=en" target="_blank">Anima Escola</a> is a project that has been created after the OPEN STUDIO workshops of Anima Mundi festival, to introduce the use of animation in the school environment. It has been successfully established as a continuous pedagogic program in the municipal schools of Rio de Janeiro, Brazil, since 2002.  In ANIMA ESCOLA, teachers and students become able to produce, through successive learning phases their own short animated videos. It was vital to the methodology of the project that the technology involved should become accessible, easy and fast to use. This need originated the conception of the software MUAN. As it was developed in the open Linux platform, based on the real use and improved with feed-back from instructors, animators and teachers, it has become a valuable and efficient tool for the use of animation language in the classroom.
+
+<table border="0">
+<tr><td>\image html ae2005_1.jpg ""</td><td>\image html ae2005_2.jpg ""</td><td>\image html ae2005_3.jpg""</td></tr>
+</table>
+
+
+*/
+
+//-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+
+
+/** \page code Download and Compiling
+
+The current version of the MUAN software
+ was successfully compiled and tested 
+using the following:
+
+<h4>Software</h4>
+\li Ubuntu 10.xx (32bits)
+\li Mac Os 10.6 (32bits)
+\li Windows 7 (32bits)
+\li gcc 4.4
+
+<h4>Hardware</h4>
+\li Minimum 512 Mb RAM
+\li Adaptec Firewire card model AFW-1430
+\li Sony Digital Camera model DCR-TRV70 NTSC
+
+<h2>Download</h2>
+Current Version: muan 12.0.1 beta (see requirements below!)
+<p><b> Ubuntu</b></p>
+\li <a href="http://www.visgraf.impa.br/outgoing/muan/muan-12.0.1-beta-en-Linux.deb">muan-12.0.1-beta-en-Linux.deb (17M)</a>
+\li <a href="http://www.visgraf.impa.br/outgoing/muan/muan-12.0.1-beta-pt-Linux.deb">muan-12.0.1-beta-pt-Linux.deb (17M)</a>
+\li <a href="http://www.visgraf.impa.br/outgoing/muan/muan-12.0.1-beta-sp-Linux.deb">muan-12.0.1-beta-sp-Linux.deb (17M)</a>
+<p><b>Mac Os</b></p>
+\li <a href="http://www.visgraf.impa.br/outgoing/muan/muan-12.0.1-beta-en-Darwin.dmg">muan-12.0.1-en-Darwin.dmg (7.2M)</a>
+\li <a href="http://www.visgraf.impa.br/outgoing/muan/muan-12.0.1-beta-pt-Darwin.dmg">muan-12.0.1-pt-Darwin.dmg (7.2M)</a>
+\li <a href="http://www.visgraf.impa.br/outgoing/muan/muan-12.0.1-beta-sp-Darwin.dmg">muan-12.0.1-sp-Darwin.dmg (7.2M)</a>
+<p><b>Windows</b></p>
+\li <a href="http://www.visgraf.impa.br/outgoing/muan/muan-12.0.1-beta-en-win32.exe">muan-12.0.1-beta-en-win32.exe (5.0M)</a>
+\li <a href="http://www.visgraf.impa.br/outgoing/muan/muan-12.0.1-beta-pt-win32.exe">muan-12.0.1-beta-pt-win32.exe (5.0M)</a>
+\li <a href="http://www.visgraf.impa.br/outgoing/muan/muan-12.0.1-beta-sp-win32.exe">muan-12.0.1-beta-sp-win32.exe (5.0M)</a>
+
+If you are using the hardware and software listed, the available package file will work fine.
+
+<h2>Requirements</h2>
+
+Required libraries for compiling in Ubuntu:
+\li libfltk1.1
+\li libdc1394-22
+\li libsamplerate0
+\li libdv4
+\li libavc1394-0
+\li libiec61883-0
+\li libv4l-0
+
+
+*/
+
+//-----------------------------------------------------------------------------
+
+
+/** \page staff Project Team
+
+
+<h3>Software Development</h3>
+
+<p> Muan was implemented and developed at Laboratory Visgraf / IMPA by:
+<UL>
+	<LI> Luiz Velho </LI>
+	<LI> Alexandra Alves</LI>
+	<LI> Bruno Silva</LI>
+	<LI> Djalma Silva</LI>
+</UL>
+
+
+<h3>Concept System</h3>
+<p>The concept of Muan was proposed by AnimaMundi and elaborated by Visgraf and AnimaMundi with the participation of:
+<UL>
+	<LI>Marcos Magalh&atilde;es</LI>
+	<LI>C&eacute;sar Coelho</LI>
+	<LI>Bernardo Mendes</LI>
+</UL>	
+
+<h3>Technological Partnership</h3>
+<p>Muan was suported by IBM with the special colaboration of:
+<UL>
+	<LI>Patr&iacute;cia Menezes</LI>
+	<LI>Marco Aur&eacute;lio e Souza</LI>
+	<LI>Gabriela</LI>
+</UL>
+
+*/
+
+//-----------------------------------------------------------------------------
+
+
+/** \page lic License
+
+<p><strong>Copyright Notice</strong>
+
+Copyright &copy; 2006.  Lab. Visgraf/IMPA and AnimaMundi. All rights reserved.
+
+
+<p><strong>Terms and Conditions</strong>
+
+ 
+<p>This program is free software; you can redistribute it and/or 
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+ 
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+ 
+<p>You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+*/
+
+
+//-----------------------------------------------------------------------------
+
+
+/** \page ack Acknowledgements
+
+
+We would like to acknowledge the following:
+
+\li People envolved at AnimaEscola Project for cooperation in tests phase including teachers and students for their colaboration.
+
+\li IBM Brazil for sponsorship, providing all necessary hardware, such as computers, digital video camera and necessary acessories for interconnection.
+
+
+
+*/
+
+
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------

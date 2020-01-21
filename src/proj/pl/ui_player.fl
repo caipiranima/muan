@@ -1,0 +1,398 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0107 
+header_name {.h} 
+code_name {.cc}
+decl {\#include <iostream>} {} 
+
+decl {\#include <fstream>} {} 
+
+decl {\#include "video_encoder.h"} {} 
+
+decl {\#include "lang_ui_player.h"} {} 
+
+class MuanPlayerUI {open
+} {
+  decl {int load_mode;} {public
+  }
+  decl {int play_position;} {}
+  Function {make_window()} {open
+  } {
+    Fl_Window win_principal {
+      label {IMPA-VISGRAF/ Anima Mundi         MUAN-PLAYER v8.2        Parceria Tecnologica IBM}
+      callback {if (btn_fullscr->value() == TRUE)
+{
+  btn_fullscr->value(FALSE);
+  fullscr();
+}
+else
+{
+  exit(0);
+}} open
+      xywh {229 102 730 595} type Double box PLASTIC_UP_BOX color 215 labelfont 6 labelcolor 158 align 0 resizable hotspot
+      code0 {win_principal->position(154,66);}
+      code1 {play_position=1;} modal visible
+    } {
+      Fl_Group gb_top {open
+        xywh {4 5 720 38} box EMBOSSED_FRAME
+      } {
+        Fl_Input edt_file_name {
+          label {Arquivo: }
+          callback {char * fname = (char*)malloc(edt_file_name->size());
+strcpy(fname, edt_file_name->value());
+
+
+if (!file_exists(fname))
+  fl_alert(MSG_FILE_NOT_EXISTS);
+else
+{
+  if (fl_filename_isdir(edt_file_name->value()))
+    load_file(fl_file_chooser(LBL_LOAD_FILE_CHOOSER, "*.{avi,mpg,ras,jpg,jpeg}",edt_file_name->value(), 0));
+  else
+    load_file(fname);
+}}
+          xywh {55 12 626 25} labelsize 10 align 36 when 8 textsize 12
+          code0 {\#include <FL/filename.H>}
+        }
+        Fl_Button btn_load {
+          callback {load_file(fl_file_chooser(LBL_LOAD_FILE_CHOOSER, "*.{avi,mpg,ras,jpg}","", 0));}
+          tooltip Carregar image {../../../data/images/filefind.png} xywh {686 9 32 30} box PLASTIC_UP_BOX shortcut 0x40067 color 215 align 16
+          code0 {\#include "FL/Fl_File_Chooser.H"}
+        }
+      }
+      Fl_Box imgv {
+        callback {/*
+
+if (fs==0)
+{
+  imgv->fullscreen();
+  fs = 1;
+}
+else
+{
+  imgv->fullscreen_off(5, 45, 720, 480);
+  fs = 0;
+}
+
+*/}
+        xywh {5 45 720 480} box ENGRAVED_FRAME when 8 resizable
+        code0 {\#include "imgviewer.h"}
+        class ImageViewer
+      }
+      Fl_Group gb_bottom {open
+        xywh {5 500 722 90}
+      } {
+        Fl_Slider sl_play {
+          callback {imgv->stop();
+
+  imglist_step( imgv->imgl, ((int)sl_play->value())-play_position);
+
+  play_position = (int)sl_play->value();}
+          xywh {237 528 265 20} type {Horz Knob} minimum 1 maximum 300 step 1 value 1 deactivate
+        }
+        Fl_Button btn_first {
+          label {@|<}
+          callback {imgv->stop();
+
+imglist_rew( imgv->imgl );}
+          xywh {237 550 40 36} box PLASTIC_UP_BOX down_box PLASTIC_UP_BOX shortcut 0xff50 color 215 align 16
+        }
+        Fl_Button btn_rew {
+          label {@<|}
+          callback {imgv->stop();
+
+imglist_step_backward( imgv->imgl );}
+          xywh {282 550 40 36} box PLASTIC_UP_BOX shortcut 0x3c color 215
+        }
+        Fl_Button btn_pause {
+          label {@||}
+          callback {imgv->stop();}
+          xywh {327 550 40 36} box PLASTIC_UP_BOX shortcut 0xff13 color 215
+        }
+        Fl_Button btn_play {
+          label {@>}
+          callback {//imglist_rew( imgv->imgl );
+  imgv->play();}
+          xywh {371 550 40 36} box PLASTIC_UP_BOX shortcut 0x4ff0d color 215
+        }
+        Fl_Button btn_fwd {
+          label {@|>}
+          callback {imgv->stop();
+
+imglist_step_foward( imgv->imgl );}
+          tooltip {Próximo} xywh {416 550 40 36} box PLASTIC_UP_BOX shortcut 0x3e color 215
+        }
+        Fl_Button btn_last {
+          label {@>|}
+          callback {imgv->stop();
+
+imglist_go_to_end( imgv->imgl );}
+          tooltip {Último} xywh {461 550 40 36} box PLASTIC_UP_BOX shortcut 0xff57 color 215
+        }
+        Fl_Button btn_manual {
+          callback {if (fork() == 0) {
+
+char* aux = (char *) malloc(strlen(MANUAL_FILE_PLAYER)+11);
+
+strcpy(aux, "firefox ");
+
+aux = strcat(aux, MANUAL_FILE_PLAYER);
+
+aux = strcat(aux, " &");
+
+int status = system(aux);
+
+exit(0);
+}}
+          tooltip Ajuda image {../../../data/images/help.png} xywh {654 528 32 30} box PLASTIC_UP_BOX shortcut 0xffbe color 215 align 16
+          code1 {\#include <unistd.h>}
+        }
+        Fl_Button btn_exit {
+          callback {exit(0);}
+          tooltip Sair image {../../../data/images/exit.png} xywh {692 528 32 30} box PLASTIC_UP_BOX color 215 align 16
+        }
+        Fl_Button btn_export {
+          callback {cb_export();}
+          tooltip {Exportar lista de imagens jpeg} image {../../../data/images/filesave.png} xywh {48 528 32 30} box PLASTIC_UP_BOX shortcut 0x40065 color 215 align 16
+        }
+        Fl_Button btn_import {
+          callback {char* fname = fl_dir_chooser(LBL_IMPORT_JPEG_FILE_CHOOSER,"", 0);
+
+if (fname != NULL)
+{
+  win_principal->cursor(FL_CURSOR_WAIT);
+  Fl::check();
+  imglist_clear(imgv->imgl);
+
+
+  VideoEncoder encoder;
+  printf("Importing JPG files...\\n");
+  encoder.jpg_read(imgv->imgl, fname, load_mode);
+printf("Total = %d\\n", imglist_getTotalRealFrames(imgv->imgl));    
+  printf("  OK.\\n");
+
+  //posicionando no primeiro frame...
+  imglist_rew( imgv->imgl ); 
+
+  sl_play->minimum(1);
+  sl_play->maximum(imglist_getTotalRealFrames(imgv->imgl));
+  
+
+  win_principal->cursor(FL_CURSOR_DEFAULT);
+  Fl::check();
+}}
+          tooltip {Importar lista de imagens jpeg} image {../../../data/images/importjpeg.png} xywh {10 528 32 30} box PLASTIC_UP_BOX shortcut 0x4006d color 215 align 16
+        }
+        Fl_Button btn_fullscr {
+          callback {fullscr();}
+          tooltip {Tela Cheia} image {../../../data/images/window_fullscreen.png} xywh {616 528 32 30} type Toggle box PLASTIC_UP_BOX shortcut 0x8ff0d color 215
+        }
+      }
+    }
+  }
+  Function {redraw_file_name(char* file_name)} {} {
+    code {edt_file_name->value(file_name);} {}
+  }
+  Function {load_file(char* fname)} {open
+  } {
+    code {if (fname!= NULL) 
+{
+
+  win_principal->cursor(FL_CURSOR_WAIT);
+  Fl::check();
+  imglist_clear(imgv->imgl);
+
+
+  if (strlen(fname)>0)
+  {
+    const char *ext = strrchr(fname, '.');
+        
+    if ((strcmp(ext, ".avi")==0) || (strcmp(ext, ".AVI")==0) )
+    {
+      VideoEncoder encoder;
+      printf("Loading AVI...");
+      encoder.avi_read(imgv->imgl, fname, load_mode);
+      printf("  OK.\\n");
+
+    }
+    else if ((strcmp(ext, ".ras")==0) || (strcmp(ext, ".RAS")==0) || (strcmp(ext, ".jpg")==0) || (strcmp(ext, ".JPG")==0))
+    {
+      printf("Loading image...");
+      insert_frame_from_imagefile(imgv->imgl, fname);
+      printf("  OK.\\n");
+    } 
+    else if ((strcmp(ext, ".mpg")==0) || (strcmp(ext, ".MPG")==0) || (strcmp(ext, ".mp4")==0))
+    {
+      VideoEncoder encoder;
+      printf("Loading MPG...");
+      encoder.mpg_read(imgv->imgl, fname);
+      printf("  OK.\\n");
+
+    }
+    else 
+    {
+      char msg[255]= MSG_INVALID_FILE_FORMAT;
+      strcat(msg, "\\n");
+      printf("%s",msg);
+    }
+
+
+    //posicionando no primeiro frame...
+    imglist_rew( imgv->imgl ); 
+
+  
+    int total = imglist_getTotalFrames(imgv->imgl);	
+    sl_play->range(1, total);
+printf("Total Captures = %d\\tTotal Frames = %d\\n", total, imglist_getTotalRealFrames(imgv->imgl));    
+  }
+  
+  redraw_file_name(fname);
+
+  win_principal->cursor(FL_CURSOR_DEFAULT);
+  Fl::check();
+
+}} {}
+  }
+  Function {cb_export()} {open
+  } {
+    code {{
+  Bool ok = FALSE;
+
+  char *fname = fl_file_chooser( LBL_EXPORT_FILE_CHOOSER, "*.{avi,jpg,mpg}", edt_file_name->value() , 0 );
+
+  Bool sobrescrever = FALSE;
+
+  while ((!ok) && (fname != NULL))
+  {
+    char *ext = strrchr(fname, '.'); 
+    if (ext == NULL) {
+      fl_alert(MSG_INFORM_FILE_FORMAT);
+      fname = fl_file_chooser( LBL_EXPORT_FILE_CHOOSER, "*.{avi,jpg,mpg}", fname, 0 );
+      continue;
+    }
+    else {
+      if ( (strcmp(ext, ".avi")==0)||(strcmp(ext, ".AVI")==0) ||
+           (strcmp(ext, ".jpg")==0)||(strcmp(ext, ".JPG")==0) ||
+           (strcmp(ext, ".mpg")==0)||(strcmp(ext, ".MPG")==0)   )
+        ok = TRUE;
+      else {
+        fl_alert(MSG_INVALID_FILE_FORMAT);
+        fname = fl_file_chooser( LBL_EXPORT_FILE_CHOOSER, "*.{avi,jpg,mpg}", fname, 0 );
+        continue;
+      }
+    }
+
+    if (file_exists(fname)) 
+    {
+      //confirma sobrescrever?
+      switch (fl_choice(MSG_OVERWRITE_FILE, LBL_CANCEL, LBL_YES, LBL_NO))
+      {
+        case 0: fname=NULL;
+                ok=TRUE;
+                break;
+        case 1: ok = TRUE;
+                break;
+        case 2: fname = fl_file_chooser( LBL_EXPORT_FILE_CHOOSER, "*.{avi,jpg,mpg}", edt_file_name->value(), 0 );
+                break;
+      }
+    }
+    else    //se arquivo nao existe
+    {
+      ok = TRUE;
+    }
+  } // fim while
+
+  if (fname != NULL)
+  {
+    export_file(fname);   
+  }
+
+}} {}
+  }
+  Function {export_file(char* fname)} {open
+  } {
+    code {if (strlen(fname)>0)
+{
+  win_principal->cursor(FL_CURSOR_WAIT);
+  Fl::check();
+
+  VideoEncoder encoder;
+
+  char *ext = strrchr(fname, '.');
+
+  char filename[250];
+  strncpy(filename, fname, ext-fname);
+  filename[ext-fname]='\\0';
+
+  if ((strcmp(ext, ".jpg")==0) || (strcmp(ext, ".JPG")==0))
+  {
+    encoder.jpg_write( imgv->imgl, filename, 75);
+  }
+  else if ((strcmp(ext, ".avi")==0) || (strcmp(ext, ".AVI")==0))
+  {
+    encoder.avi_write( fname, imgv->imgl, AVI_DV2_FORMAT, MAX_FRAMES, MAX_FILE_SIZE, false, false);
+  }
+  else //if ((strcmp(ext, ".mpg")==0) || (strcmp(ext, ".MPG")==0))
+  {
+    encoder.mpg_write( imgv->imgl, fname);
+  }
+
+  win_principal->cursor(FL_CURSOR_DEFAULT);
+  Fl::check();
+
+
+}} {}
+  }
+  Function {fullscr()} {open
+  } {
+    code {if (btn_fullscr->value()==TRUE)
+{
+  win_principal->fullscreen();
+  imgv->fullscreen();
+}
+else
+{
+  imgv->fullscreen_off(5, 45, 720, 480);
+  win_principal->fullscreen_off(270, 76, 730, 600);
+  win_principal->hide();
+  win_principal->show();
+}} {selected
+    }
+  }
+  Function {set_language_ui()} {open
+  } {
+    code {win_principal->label(LBL_WIN_PRINCIPAL_PLAYER);
+win_principal->tooltip(HNT_WIN_PRINCIPAL_PLAYER);
+
+edt_file_name->label(LBL_EDT_FILE_NAME_PLAYER);
+edt_file_name->tooltip(HNT_EDT_FILE_NAME_PLAYER);
+
+btn_load->tooltip(HNT_BTN_LOAD);
+
+btn_first->tooltip(HNT_BTN_FIRST);
+btn_rew->tooltip(HNT_BTN_REW);
+btn_pause->tooltip(HNT_BTN_PAUSE);
+btn_play->tooltip(HNT_BTN_PLAY);
+btn_fwd->tooltip(HNT_BTN_FWD);
+btn_last->tooltip(HNT_BTN_LAST);
+
+btn_manual->tooltip(HNT_BTN_MANUAL);
+btn_exit->tooltip(HNT_BTN_EXIT);
+
+btn_export->tooltip(HNT_BTN_EXPORT);
+btn_import->tooltip(HNT_BTN_IMPORT);
+btn_fullscr->tooltip(HNT_BTN_FULLSCR);} {}
+  }
+} 
+
+Function {file_exists(char *fname)} {return_type int
+} {
+  code {std::fstream fin;
+  fin.open(fname,std::ios::in);
+  if( fin.is_open() )
+  {
+    fin.close();
+    return 1;
+  }
+  fin.close();
+  return 0;} {}
+} 
